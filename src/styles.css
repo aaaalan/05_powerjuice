@@ -1,0 +1,112 @@
+/* Add application styles & imports to this file! */
+
+:root {
+  --paolo: #2c9985;
+  --powder: #96ccc2;
+  --emerald: #27d17f;
+  --bg-color: #f5fafa;
+  --gainsboro: #d9dee3;
+  --text-color: #1b1f27;
+}
+
+* {
+  font-family: "Work Sans", sans-serif;
+}
+
+a,
+.header,
+.button {
+  font-family: "Work Sans", sans-serif !important;
+  font-weight: 400 !important;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Work Sans", sans-serif !important;
+}
+
+h3,
+.style-h3 {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.pwr-grey {
+  color: var(--gainsboro);
+}
+
+.vertical-menu a i {
+  float: left !important;
+  padding-right: 25px;
+  margin: 0 !important;
+}
+
+.left-column {
+  padding: 5% 10% 0 10%;
+  border-right: 1px solid var(--gainsboro);
+  height: 100vh;
+}
+
+.right-column {
+  padding-top: 8%;
+}
+
+.ui.vertical.tabular.menu .item,
+.ui.vertical.tabular.menu {
+  border: 0 !important;
+}
+
+.ui.tabular.menu .item {
+  padding: 5% 0 !important;
+}
+
+.ui.vertical.tabular.menu {
+  margin-top: 15% !important;
+}
+
+.pwr-button {
+  border-radius: 8px;
+  padding: 10px 20px;
+  background: var(--emerald);
+  color: #fff;
+  margin: 5% 0 5% 0;
+  display: inline-block;
+  transition: 300ms ease-in-out;
+}
+.pwr-button.grey {
+  background: var(--gainsboro);
+}
+
+.pwr-button.grey:hover {
+  background: #9db4c0;
+}
+
+.pwr-button:hover {
+  background: var(--paolo);
+  color: #fff;
+}
+
+.ui.vertical.tabular.menu .item {
+  color: var(--gainsboro);
+}
+
+.pwr-location-list-item {
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.11);
+  margin:20px;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+/* Alan */
+
+a.ui{
+  color: var(--text-color);
+  transition: 300ms ease-in-out;
+
+}
+a.ui:hover{
+  color: var(--paolo);
+
+}

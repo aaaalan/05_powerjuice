@@ -1,0 +1,9 @@
+<div class="ui stackable grid">
+  <a *ngFor="let location of locations" class="ui four wide columns item pwr-location-list-item" [location]="location"
+    [routerLink]=[location.id]></a>
+  <div *ngIf="!locations" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+  <p *ngIf="locations && !locations.length">Es wurden noch keine Bücher
+    eingetragen.</p>
+</div>

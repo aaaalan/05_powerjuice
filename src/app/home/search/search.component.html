@@ -1,0 +1,19 @@
+<div class="ui search" [ngClass]="{ loading: isLoading }">
+  <div class="ui icon input">
+    <input (keyup)="keyup.emit(searchTerm.value)" #searchTerm
+class="prompt" type="text" placeholder="Suche...">
+    <i class="search icon"></i>
+
+
+  </div>
+  <div class="results transition" [ngClass]="{ visible: foundLocations.length
+}">
+    <a href (click)="locationSelected.emit(location); false" class="result" *ngFor="let location of foundLocations">
+      <div class="content">
+        <div class="title">{{ location.name }}</div>
+        <div class="subtitle">{{ location.city }}, {{location.zipcode}}</div>
+
+      </div>
+    </a>
+  </div>
+</div>

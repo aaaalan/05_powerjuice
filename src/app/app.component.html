@@ -1,0 +1,38 @@
+<!--<div class="ui four item tabs menu">
+  <a routerLink="home" routerLinkActive="active" class="item ">Home</a>
+  <a routerLink="locations" routerLinkActive="active" class="item blue">Impforte</a>
+  <a routerLink="locations" routerLinkActive="active" class="item red">Jetzt anmelden</a>
+  <a routerLink="locations" routerLinkActive="active" class="item green">Login</a>
+
+
+</div>
+<router-outlet></router-outlet>-->
+
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="left-column">
+      <div class="logo">
+        <p class="style-h3">PowerJuice</p>
+      </div>
+      <div class="ui vertical fluid tabular menu vertical-menu">
+        <a routerLink="home" routerLinkActive="active" class="item ">
+          <i class="home icon"></i>Home</a>
+        <a routerLink="locations" routerLinkActive="active" class="item">
+          <i class="hospital icon"></i>Impforte</a>
+        <!--<a routerLink="locations" routerLinkActive="active" class="item">
+          <i class="syringe icon"></i>Jetzt anmelden</a>
+        <a routerLink="locations" routerLinkActive="active" class="item">
+          <i class="lock icon"></i>Login</a>-->
+          
+      </div>
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
+
+    <div class="segment">
+      <div class="right-column">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
