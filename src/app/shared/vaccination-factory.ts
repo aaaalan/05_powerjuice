@@ -2,6 +2,10 @@ import { User } from './user';
 import { Vaccination } from './vaccination';
 export class VaccinationFactory {
   static empty(): Vaccination {
+
+
+
+
     return new Vaccination(
       null,
       new Date(),
@@ -28,12 +32,15 @@ export class VaccinationFactory {
     );
   }
   static fromObject(vaccination: any): Vaccination {
+
+
     return new Vaccination(
       vaccination.id,
       vaccination.maxParticipants,
       typeof vaccination.date === 'string'
         ? new Date(vaccination.date)
         : vaccination.date,
+
       typeof vaccination.startTime === 'string'
         ? new Date(vaccination.startTime)
         : vaccination.startTime,
