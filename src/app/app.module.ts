@@ -13,9 +13,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { SearchComponent } from './home/search/search.component';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from "@angular/common";
-import { VaccinationListComponent } from './vaccination-list/vaccination-list.component';
-import { VaccinationListItemComponent } from './vaccination-list-item/vaccination-list-item.component';
 import { VaccinationDetailsComponent } from './vaccination-details/vaccination-details.component';
+import { VaccinationListComponent } from './vaccination-list/vaccination-list.component';
+
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -28,9 +28,8 @@ registerLocaleData(localeDe);
     LocationDetailsComponent,
     HomeComponent,
     SearchComponent,
+    VaccinationDetailsComponent,
     VaccinationListComponent,
-    VaccinationListItemComponent,
-    VaccinationDetailsComponent
   ],
   bootstrap: [AppComponent],
   providers: [LocationStoreService, {provide: LOCALE_ID, useValue:'de'}]
