@@ -30,14 +30,14 @@
 
       <div class="four wide column">
         <h4 class="ui header">Impfung</h4>
-        <span *ngFor="let vac of location.vaccinations; last as l">
+       <!-- <span *ngFor="let vac of location.vaccinations; last as l">
           <h4 class="ui header">MaxUsers: {{ vac.maxUsers }}</h4>
           <h4 class="ui header">Datum: {{ vac.date | date:'shortDate' }}</h4>
           <h4 class="ui header">Uhrzeit: {{ vac.startTime }}</h4>
           <div class="ui divider"></div>
         <span *ngIf="!l">
         </span>
-        </span>
+        </span> -->
         <a routerLink=".." class="pwr-button">Zurück zur LocationListe</a>
 
         <a class="pwr-button grey" (click)="removeLocation()">

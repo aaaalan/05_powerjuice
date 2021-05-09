@@ -2,31 +2,7 @@ import { Location } from "./location";
 import { User } from "./user";
 export class LocationFactory {
   static empty(): Location {
-    return new Location(null, "", "", 0, "", [
-      {
-        id: 0,
-        date: new Date(),
-        startTime: new Date(),
-        endTime: new Date(),
-        maxUsers: 0,
-        location_id: 0,
-        users: [
-          {
-            id: 0,
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            sex: "",
-            password: "",
-            isAdmin: false,
-            isVaccinated: false,
-            ssn: 0,
-            vaccination_id: 0
-          }
-        ]
-      }
-    ]);
+    return new Location(null, "", "", 0, "");
   }
   static fromObject(rawLocation: any): Location {
     return new Location(
@@ -35,7 +11,7 @@ export class LocationFactory {
       rawLocation.street,
       rawLocation.zipcode,
       rawLocation.city,
-      rawLocation.vaccinations
+
     );
   }
 }
