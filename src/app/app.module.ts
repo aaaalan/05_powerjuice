@@ -15,6 +15,7 @@ import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from "@angular/common";
 import { VaccinationDetailsComponent } from './vaccination-details/vaccination-details.component';
 import { VaccinationListComponent } from './vaccination-list/vaccination-list.component';
+import { VaccinationListItemComponent } from './vaccination-list-item/vaccination-list-item.component';
 
 registerLocaleData(localeDe);
 
@@ -30,6 +31,7 @@ registerLocaleData(localeDe);
     SearchComponent,
     VaccinationDetailsComponent,
     VaccinationListComponent,
+    VaccinationListItemComponent,
   ],
   bootstrap: [AppComponent],
   providers: [LocationStoreService, {provide: LOCALE_ID, useValue:'de'}]
