@@ -2,9 +2,12 @@
   <div class="sixteen wide column">
     <div class="item">
       <div class="content">
-        <h1 class="ui header">Impfung am {{ vaccination?.date | date:'dd.MM.yyyy' }}</h1>
+        <h1 class="ui header">Impfung am {{ vaccination.date | date:'dd.MM.yyyy' }}</h1>
         <div class="meta">
           <span class="time"> Von {{ vaccination?.startTime | date:'shortTime' }} bis  {{ vaccination?.endTime | date:'shortTime' }}</span>
+        </div>
+                <div class="meta">
+          <span class="time"> Von {{ vaccination.startTime }} bis  {{ vaccination.endTime }}</span>
         </div>
       </div>
     </div>
