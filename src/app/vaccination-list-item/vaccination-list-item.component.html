@@ -1,3 +1,24 @@
-<p>
-vaccination-list-item works!
-</p>
+<div class="content" style="padding:25px;">
+  <h3><i class="heart icon"></i> {{ vaccination.id }}</h3>
+
+  <div class="meta">
+    <span class="street"
+      ><i class="angle right icon"></i>{{ vaccination.id }}</span>
+      </div>
+      <div class="meta">
+    <span class="zipcode"
+      ><i class="angle right icon"></i>{{vaccination.id
+      }}</span
+    >
+  </div>
+  <div class="ui hidden divider"></div>
+  <div class="extra">
+    <div class="description">
+      <p>Melden Sie sich für eine Impfung in {{vaccination.id}} an.</p>
+    </div>
+
+    <div class="pwr-button">
+      <i class="arrow circle right icon"></i> Verfügbare Termine
+    </div>
+  </div>
+</div>

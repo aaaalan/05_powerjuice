@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Vaccination } from '../shared/location';
 
 @Component({
-  selector: 'app-vaccination-list-item',
+  selector: 'a.pwr-vaccination-list-item',
   templateUrl: './vaccination-list-item.component.html',
   styleUrls: ['./vaccination-list-item.component.css']
 })
 export class VaccinationListItemComponent implements OnInit {
-
-  constructor() { }
+  @Input() vaccination: Vaccination;
+  constructor() {}
 
   ngOnInit() {
+    console.log(this.vaccination);
   }
-
 }
