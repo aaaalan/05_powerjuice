@@ -37,7 +37,11 @@ export class VaccinationFormComponent implements OnInit {
   initVaccianation() {
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
-      location: [this.vaccination.location.city, Validators.required]
+      location: [this.vaccination.location.city],
+      maxUsers: [this.vaccination.maxUsers, [Validators.required, Validators.min(1)]],
+      date: [this.vaccination.date, Validators.required],
+      startTime: [this.vaccination.startTime, Validators.required],
+      endTime: [this.vaccination.endTime, Validators.required]
     });
     this.vaccinationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()

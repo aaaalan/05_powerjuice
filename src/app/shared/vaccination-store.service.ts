@@ -31,7 +31,7 @@ export class VaccinationStoreService {
   }
   update(vaccination: Vaccination): Observable<any> {
     return this.http
-      .put(`${this.api}/vaccination/${vaccination.id}`, vaccination)
+      .put(`${this.api}/vaccinations/${vaccination.id}`, vaccination)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }

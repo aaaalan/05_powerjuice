@@ -8,10 +8,27 @@
       }} </div>
   </div>
   <div class="field">
-    <label>Untertitel</label>
-    <input formControlName="subtitle">
+    <label>MaxUsers</label>
+    <input formControlName="maxUsers">
   </div>
-  
+    <div class="field">
+    <label>Datum</label>
+    <input formControlName="date">
+  </div>
+    <div class="field">
+    <label>startTime</label>
+    <input formControlName="startTime">
+  </div>
+    <div class="field">
+    <label>endTime</label>
+    <input formControlName="endTime">
+  </div>
+  <div class="field" [class.disabled]="isUpdatingVaccination">
+    <label>Id</label>
+    <input formControlName="id">
+    <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}
+    </div>
+  </div>
   
   <button type="submit" class="ui button"
 [disabled]="vaccinationForm.invalid">Speichern</button>
