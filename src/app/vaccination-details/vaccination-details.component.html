@@ -22,12 +22,13 @@
           {{vaccination.location.city}}
           </span><br>
         </div>
-
+        <a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', vaccination?.id]">
+          <i class="write icon"></i> Vaccination bearbeiten
+        </a>
         <h3 class="ui subheader">
-            <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
+          <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
         </h3>
       </div>
-
 
       <table class="ui five column table">
         <thead>

@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { LocationListComponent } from './location-list/location-list.component';
@@ -17,11 +17,17 @@ import { VaccinationDetailsComponent } from './vaccination-details/vaccination-d
 import { VaccinationListComponent } from './vaccination-list/vaccination-list.component';
 import { VaccinationListItemComponent } from './vaccination-list-item/vaccination-list-item.component';
 import { VaccinationStoreService } from './shared/vaccination-store.service';
+import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
 
 registerLocaleData(localeDe);
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
   declarations: [
     AppComponent,
     HelloComponent,
@@ -32,7 +38,8 @@ registerLocaleData(localeDe);
     SearchComponent,
     VaccinationDetailsComponent,
     VaccinationListComponent,
-    VaccinationListItemComponent
+    VaccinationListItemComponent,
+    VaccinationFormComponent
   ],
   bootstrap: [AppComponent],
   providers: [
