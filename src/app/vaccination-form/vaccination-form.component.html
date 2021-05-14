@@ -11,12 +11,7 @@
     <label>Untertitel</label>
     <input formControlName="subtitle">
   </div>
-  <div class="field" [class.disabled]="isUpdatingVaccination">
-    <label>ISBN-Nummer</label>
-    <input formControlName="id">
-    <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}
-    </div>
-  </div>
+  
   
   <button type="submit" class="ui button"
 [disabled]="vaccinationForm.invalid">Speichern</button>

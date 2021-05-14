@@ -5,7 +5,7 @@ import { Vaccination } from '../shared/location';
 import { VaccinationFactory } from '../shared/vaccination-factory';
 import { VaccinationStoreService } from '../shared/vaccination-store.service';
 import { VaccinationFormErrorMessages } from './vaccination-form-error-messages';
-
+import moment from 'moment';
 @Component({
   selector: 'pwr-vaccination-form',
   templateUrl: './vaccination-form.component.html',
@@ -63,6 +63,15 @@ export class VaccinationFormComponent implements OnInit {
 
   submitForm() {
     // filter empty values
+
+    let updatedVacevent:Vaccination = VaccinationFactory.fromObject(this.vaccinationForm.value);
+    console.log(this.vaccinationForm.value.startTime);
+    const date  = moment(this.vaccinationForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
+    const startTimeNew = moment(this.vaccinationForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
+    const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
+    updatedVacevent.startTime = startTimeNew; 
+    updatedVacevent.endTime = endTimeNew; 
+
 
     const vaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
