@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './home/search/search.component';
 import localeDe from '@angular/common/locales/de';
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { VaccinationDetailsComponent } from './vaccination-details/vaccination-details.component';
 import { VaccinationListComponent } from './vaccination-list/vaccination-list.component';
 import { VaccinationListItemComponent } from './vaccination-list-item/vaccination-list-item.component';
@@ -44,7 +44,7 @@ registerLocaleData(localeDe);
   bootstrap: [AppComponent],
   providers: [
     LocationStoreService,
-    VaccinationStoreService,
+    VaccinationStoreService,DatePipe,
     { provide: LOCALE_ID, useValue: 'de' }
   ]
 })

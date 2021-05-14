@@ -1,35 +1,32 @@
 <h1>Buchformular</h1>
 <form class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
   <input type="hidden" name="id">
-  <div class="field">
-    <label>Buchtitel</label>
-    <input formControlName="title">
-    <div *ngIf="errors.title" class="ui negative message"> {{ errors.title
-      }} </div>
-  </div>
-  <div class="field">
-    <label>MaxUsers</label>
-    <input formControlName="maxUsers">
-  </div>
-    <div class="field">
-    <label>Datum</label>
-    <input formControlName="date">
-  </div>
-    <div class="field">
-    <label>startTime</label>
-    <input formControlName="startTime">
-  </div>
-    <div class="field">
-    <label>endTime</label>
-    <input formControlName="endTime">
-  </div>
   <div class="field" [class.disabled]="isUpdatingVaccination">
     <label>Id</label>
     <input formControlName="id">
     <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}
     </div>
   </div>
-  
-  <button type="submit" class="ui button"
-[disabled]="vaccinationForm.invalid">Speichern</button>
+  <div class="field">
+    <label>MaxUsers</label>
+    <input formControlName="maxUsers">
+  </div>
+ <!-- <div class="field">
+    <label>Datum</label>
+    <input type="date" formControlName="date">
+  </div>
+  <div class="field">
+    <label>startTime</label>
+    <input type="time" formControlName="startTime">
+  </div>
+  <div class="field">
+    <label>endTime</label>
+    <input type="time" formControlName="endTime">
+  </div> -->
+
+          <!--Buttons-->
+          <button *ngIf="isUpdatingVaccination" type="submit" class="ui button" [disabled]="vaccinationForm.invalid">Termin ändern</button>
+          <button *ngIf="!isUpdatingVaccination" type="submit" class="ui button" [disabled]="vaccinationForm.invalid">Termin speichern</button>
+ <!-- <button type="submit" class="ui button"
+[disabled]="vaccinationForm.invalid">Speichern</button> -->
 </form>
