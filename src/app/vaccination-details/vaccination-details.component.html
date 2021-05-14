@@ -2,11 +2,65 @@
   <div class="sixteen wide column">
     <div class="item">
       <div class="content">
-        <h1 class="ui header">Impfung am {{ vaccination.date | date:'dd.MM.yyyy' }}</h1>
+        <h1 class="ui subheader">Impfung in {{vaccination.location.name}}, {{vaccination.location.zipcode}}
+          {{vaccination.location.city}}</h1>
+        <h3 class="ui subheader">Impfung am {{ vaccination.date | date:'dd.MM.yyyy' }}</h3>
         <div class="meta">
-          <span class="time"> Von {{ vaccination?.startTime}} bis  {{ vaccination?.endTime }}</span>
+          <i class="angle right icon"></i><span class="time">Von {{ vaccination?.startTime}} bis  {{ vaccination?.endTime }}</span>
         </div>
+        <br>
+        <div class="meta">
+          <h4 class="ui subheader">Standort:</h4>
+          <span class="street">
+            <i class="angle right icon"></i>Ort:  {{vaccination.location.name}}
+          </span><br>
+          <span class="street">
+            <i class="angle right icon"></i>Straße:{{vaccination.location.street}}
+          </span><br>
+          <span class="street">
+            <i class="angle right icon"></i>Stadt:  {{vaccination.location.zipcode}}
+          {{vaccination.location.city}}
+          </span><br>
+        </div>
+
+        <h3 class="ui subheader">
+            <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
+        </h3>
       </div>
+
+
+      <table class="ui five column table">
+        <thead>
+          <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>SSN</th>
+            <th>Geschlecht</th>
+            <th>Telefonnummer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of vaccination.users; last as l">
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.ssn}}</td>
+            <td>{{user.sex}}</td>
+            <td>{{user.phone}}</td>
+          </tr>
+
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Noch {{ vaccination.maxUsers-vaccination.users.length }} Impftermine verfügbar
+              ({{vaccination.users.length}}/{{ vaccination.maxUsers }})</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+
     </div>
   </div>
 </div>

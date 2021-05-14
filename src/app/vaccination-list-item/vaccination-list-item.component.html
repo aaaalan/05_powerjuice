@@ -3,17 +3,17 @@
 
   <div class="meta">
     <span class="street"
-      ><i class="angle right icon"></i>{{ vaccination.id }}</span>
+      ><i class="angle right icon"></i>Verfügbare Impfungen: {{vaccination.users.length}}/{{ vaccination.maxUsers }}</span>
   </div>
   <div class="meta">
     <span class="zipcode"
-      ><i class="angle right icon"></i>{{vaccination.id
+      ><i class="angle right icon"></i>am {{vaccination.date | date:'longDate'
       }}</span>
   </div>
   <div class="ui hidden divider"></div>
   <div class="extra">
     <div class="description">
-      <p>Melden Sie sich für eine Impfung in {{vaccination.id}} an.</p>
+      <p>Melden Sie sich für eine Impfung in {{vaccination.location.city}} an.</p>
     </div>
 
     <div class="pwr-button">
