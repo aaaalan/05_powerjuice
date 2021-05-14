@@ -64,14 +64,22 @@ export class VaccinationFormComponent implements OnInit {
   submitForm() {
     // filter empty values
 
-    let updatedVacevent:Vaccination = VaccinationFactory.fromObject(this.vaccinationForm.value);
+    let updatedVacevent: Vaccination = VaccinationFactory.fromObject(
+      this.vaccinationForm.value
+    );
     console.log(this.vaccinationForm.value.startTime);
-    const date  = moment(this.vaccinationForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
-    const startTimeNew = moment(this.vaccinationForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
-    const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
-    updatedVacevent.startTime = startTimeNew; 
-    updatedVacevent.endTime = endTimeNew; 
-
+    const date = moment(this.vaccinationForm.value.date).toDate();
+    const startTimeNew = moment(
+      this.vaccinationForm.value.date +
+        ' ' +
+        this.vaccinationForm.value.startTime
+    ).toDate();
+    const endTimeNew = moment(
+      this.vaccinationForm.value.date + ' ' + this.vaccinationForm.value.endTime
+    ).toDate();
+    updatedVacevent.startTime = startTimeNew;
+    updatedVacevent.endTime = endTimeNew;
+    updatedVacevent.date = date;
 
     const vaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
