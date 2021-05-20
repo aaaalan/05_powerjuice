@@ -92,13 +92,17 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccinationForm.value
     );
 
+
+    //deep copy - did not work without??
     vaccination.date = this.vaccinationForm.value.date;
     vaccination.startTime = this.vaccinationForm.value.startTime;
     vaccination.endTime = this.vaccinationForm.value.endTime;
     
-    //vaccination.users = this.vaccination.users;
+    if(this.vaccination.users.length>1){
+      vaccination.users = this.vaccination.users;
+    }
 
-    //deep copy - did not work without??
+   
 
     console.log(vaccination);
 
