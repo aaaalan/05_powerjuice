@@ -118,13 +118,13 @@ export class VaccinationFormComponent implements OnInit {
         });
       });
     } else {
-      //vaccination.user_id = 1; // jsut for testing
+      vaccination.id = 1; // jsut for testing
       console.log('Erstellen');
 
       console.log(vaccination);
-      this.vs.create(vaccination).subscribe(res => {
-        this.vaccination = VaccinationFactory.empty();
-        this.vaccinationForm.reset(VaccinationFactory.empty());
+        this.vs.create(vaccination).subscribe(res => {
+        //this.vaccination = VaccinationFactory.empty();
+        //this.vaccinationForm.reset(VaccinationFactory.empty());
         this.router.navigate(['../vaccinations'], { relativeTo: this.route });
       });
     }
