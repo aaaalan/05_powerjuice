@@ -37,7 +37,7 @@ export class LocationStoreService {
   }
   remove(id: number): Observable<any> {
     return this.http
-      .delete(`${this.api}/location/${id}`)
+      .delete(`${this.api}/locations/${id}`)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }

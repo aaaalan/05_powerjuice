@@ -40,7 +40,7 @@
         </span> -->
         <a routerLink=".." class="pwr-button">Zurück zur LocationListe</a>
 
-        <a class="pwr-button grey" (click)="removeLocation()">
+        <a  a *ngIf="authService.isLoggedIn()" class="pwr-button grey" (click)="removeLocation()">
           <i class="remove icon"></i> Buch löschen
         </a>
 

@@ -13,7 +13,7 @@ interface Token {
 @Injectable()
 export class AuthenticationService {
   private api: string =
-    'https://bookstore21test.schoenboeck.kwmhgb.at/api/auth';
+    'https://powerjuice.s1810456011.student.kwmhgb.at/api/auth';
   //'http://localhost:8080/api/auth';
   constructor(private http: HttpClient) {}
   login(email: string, password: string) {

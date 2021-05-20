@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LocationFactory } from "../shared/location-factory";
 import { Location } from "../shared/location";
 import { LocationStoreService } from "../shared/location-store.service";
+import { AuthenticationService } from "../shared/authentication-service";
 
 @Component({
   selector: "pwr-location-details",
@@ -20,7 +21,8 @@ export class LocationDetailsComponent implements OnInit {
   constructor(
     private ls: LocationStoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public authService: AuthenticationService
   ) {}
 
   showLocationList() {

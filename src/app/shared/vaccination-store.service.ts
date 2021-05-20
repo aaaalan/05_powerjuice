@@ -37,7 +37,7 @@ export class VaccinationStoreService {
   }
   remove(id: number): Observable<any> {
     return this.http
-      .delete(`${this.api}/vaccination/${id}`)
+      .delete(`${this.api}/vaccinations/${id}`)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
