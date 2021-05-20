@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../shared/authentication-service';
 import { Vaccination } from '../shared/location';
 import { LocationFactory } from '../shared/location-factory';
 import { VaccinationFactory } from '../shared/vaccination-factory';
@@ -17,7 +18,8 @@ export class VaccinationDetailsComponent implements OnInit {
   constructor(
     private vs: VaccinationStoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public authService: AuthenticationService
   ) {}
 
   showLocationList() {
