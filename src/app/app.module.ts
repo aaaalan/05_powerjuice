@@ -18,6 +18,9 @@ import { VaccinationListComponent } from './vaccination-list/vaccination-list.co
 import { VaccinationListItemComponent } from './vaccination-list-item/vaccination-list-item.component';
 import { VaccinationStoreService } from './shared/vaccination-store.service';
 import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './shared/authentication-service';
+
 
 registerLocaleData(localeDe);
 
@@ -39,10 +42,11 @@ registerLocaleData(localeDe);
     VaccinationDetailsComponent,
     VaccinationListComponent,
     VaccinationListItemComponent,
-    VaccinationFormComponent
+    VaccinationFormComponent,
+    LoginComponent
   ],
   bootstrap: [AppComponent],
-  providers: [
+  providers: [AuthenticationService,
     LocationStoreService,
     VaccinationStoreService,DatePipe,
     { provide: LOCALE_ID, useValue: 'de' }

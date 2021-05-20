@@ -1,17 +1,20 @@
-import { Component, VERSION } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from "./shared/location";
-import { LocationStoreService } from "./shared/location-store.service";
+import { Component, VERSION } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from './shared/authentication-service';
+import { Location } from './shared/location';
+import { LocationStoreService } from './shared/location-store.service';
 
 @Component({
-  selector: "pwr-root",
-  templateUrl: "./app.component.html"
+  selector: 'pwr-root',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   listOn = true;
   detailsOn = true;
 
   location: Location;
+
+  constructor(private authService: AuthenticationService) {}
 
   showList() {
     this.listOn = true;
@@ -21,6 +24,17 @@ export class AppComponent {
     this.location = location;
     this.listOn = false;
     this.detailsOn = true;
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+  getLoginLabel() {
+    if (this.isLoggedIn()) {
+      return 'Logout';
+    } else {
+      return 'Login';
+    }
   }
 
   /*`
