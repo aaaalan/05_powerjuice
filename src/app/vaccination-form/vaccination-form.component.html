@@ -1,20 +1,32 @@
 <h1>Buchformular</h1>
-<form class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
-  <input type="hidden" name="id">
+<form
+  class="ui large form"
+  [formGroup]="vaccinationForm"
+  (ngSubmit)="submitForm()"
+>
+  <input type="hidden" name="id" />
   <div class="field" [class.disabled]="isUpdatingVaccination">
     <label>Id</label>
-    <input formControlName="id">
-    <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}
-    </div>
+    <input formControlName="id" />
+    <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}</div>
   </div>
   <div class="field">
     <label>MaxUsers</label>
-    <input formControlName="maxUsers">
+    <input type="number" formControlName="maxUsers" />
   </div>
- <!-- <div class="field">
+  <div class="field">
+    <label>Ort</label>
+    <select class="ui dropdown" formControlName="location_id">
+      <option *ngFor="let location of locations" [value]="location.id">
+        {{location.city}}</option
+      >
+    </select>
+  </div>
+  <!-- <div class="field">
     <label>Datum</label>
     <input type="date" formControlName="date">
   </div>
+  
   <div class="field">
     <label>startTime</label>
     <input type="time" formControlName="startTime">
@@ -24,9 +36,23 @@
     <input type="time" formControlName="endTime">
   </div> -->
 
-          <!--Buttons-->
-          <button *ngIf="isUpdatingVaccination" type="submit" class="ui button" [disabled]="vaccinationForm.invalid">Termin ändern</button>
-          <button *ngIf="!isUpdatingVaccination" type="submit" class="ui button" [disabled]="vaccinationForm.invalid">Termin speichern</button>
- <!-- <button type="submit" class="ui button"
+  <!--Buttons-->
+  <button
+    *ngIf="isUpdatingVaccination"
+    type="submit"
+    class="ui button"
+    [disabled]="vaccinationForm.invalid"
+  >
+    Termin ändern
+  </button>
+  <button
+    *ngIf="!isUpdatingVaccination"
+    type="submit"
+    class="ui button"
+    [disabled]="vaccinationForm.invalid"
+  >
+    Termin speichern
+  </button>
+  <!-- <button type="submit" class="ui button"
 [disabled]="vaccinationForm.invalid">Speichern</button> -->
 </form>

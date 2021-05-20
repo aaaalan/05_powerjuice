@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Vaccination } from '../shared/location';
+import { Vaccination, Location } from '../shared/location';
 import { VaccinationFactory } from '../shared/vaccination-factory';
 import { VaccinationStoreService } from '../shared/vaccination-store.service';
 import { VaccinationFormErrorMessages } from './vaccination-form-error-messages';
@@ -15,9 +15,9 @@ import { DatePipe } from '@angular/common';
 })
 export class VaccinationFormComponent implements OnInit {
   vaccinationForm: FormGroup;
-    datePipeStart: string;
+  datePipeStart: string;
   datePipeEnd: string;
-  location: Location;
+  locations: Location[];
   vaccination = VaccinationFactory.empty();
   errors: { [key: string]: string } = {};
   isUpdatingVaccination = false;
@@ -31,6 +31,8 @@ export class VaccinationFormComponent implements OnInit {
     private datePipe: DatePipe
   ) {}
   ngOnInit() {
+    this.ls.getAll().subscribe(res => (this.locations = res));
+
     const id = this.route.snapshot.params['id'];
     console.log(this.route.snapshot.params);
     if (id) {
@@ -43,20 +45,23 @@ export class VaccinationFormComponent implements OnInit {
     this.initVaccianation();
   }
   initVaccianation() {
-     /* console.log("date" + this.vaccination.date);
+    /* console.log("date" + this.vaccination.date);
       this.datePipeStart = this.datePipe.transform(this.vaccination.startTime, 'HH:mm:ss');
       this.datePipeEnd = this.datePipe.transform(this.vaccination.endTime, 'HH:mm:ss');
       console.log("test"+this.vaccination.date+"___ "+this.datePipeStart);*/
-  
+
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
-      location: [this.vaccination.location.city],
       maxUsers: [
         this.vaccination.maxUsers,
         [Validators.required, Validators.min(1)]
       ],
-     /* date: [this.vaccination.date, Validators.required],
-      startTime: [this.vaccination.startTime, Validators.required],
+      location_id: [this.vaccination.location_id],
+
+      location: [this.vaccination.location.city]
+
+      /*date: [this.vaccination.date, Validators.required]
+       startTime: [this.vaccination.startTime, Validators.required],
       endTime: [this.vaccination.endTime, Validators.required]*/
     });
     this.vaccinationForm.statusChanges.subscribe(() =>
@@ -84,9 +89,12 @@ export class VaccinationFormComponent implements OnInit {
   submitForm() {
     // filter empty values
 
+    /*
     let updatedVacevent: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
+    
+    
     console.log(this.vaccinationForm.value.startTime);
     const date = moment(this.vaccinationForm.value.date).toDate();
     const startTimeNew = moment(
@@ -99,26 +107,40 @@ export class VaccinationFormComponent implements OnInit {
     ).toDate();
     updatedVacevent.startTime = startTimeNew;
     updatedVacevent.endTime = endTimeNew;
-    updatedVacevent.date = date;
+    updatedVacevent.date = date; */
 
-   
-
-    const vaccination: Vaccination = VaccinationFactory.fromObject(
+    console.log('VacForm');
+    console.log(this.vaccinationForm.value);
+    const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
+
     //deep copy - did not work without??
-    console.log(vaccination);
+
+    console.log(updatedVaccination);
     //just copy the authors
-    vaccination.users = this.vaccination.users;
+    //updatedVaccination.date = "2015-09-23";
+    //updatedVaccination.startTime = new Date();
+    //updatedVaccination.endTime = new Date();
+
+    updatedVaccination.users = this.vaccination.users;
+
+    this.ls
+      .getSingle(this.vaccinationForm.controls['location_id'].value)
+      .subscribe(res => {
+        updatedVaccination.location = res;
+      });
+
     if (this.isUpdatingVaccination) {
-      this.vs.update(vaccination).subscribe(res => {
-        this.router.navigate(['../../vaccinations', vaccination.id], {
+      this.vs.update(updatedVaccination).subscribe(res => {
+        this.router.navigate(['../../vaccinations', updatedVaccination.id], {
           relativeTo: this.route
         });
+        console.log(updatedVaccination.maxUsers + ' but why');
       });
     } else {
       //vaccination.user_id = 1; // jsut for testing
-      console.log(vaccination);
+      console.log(updatedVaccination);
     }
   }
 }
