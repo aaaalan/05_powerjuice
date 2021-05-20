@@ -9,7 +9,7 @@ import { LocationDetailsComponent } from './location-details/location-details.co
 import { LocationStoreService } from './shared/location-store.service';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchComponent } from './home/search/search.component';
 import localeDe from '@angular/common/locales/de';
 import { DatePipe, registerLocaleData } from '@angular/common';
@@ -20,7 +20,8 @@ import { VaccinationStoreService } from './shared/vaccination-store.service';
 import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './shared/authentication-service';
-
+import { TokenInterceptorService } from './shared/token-interceptor.service';
+import { JwtInterceptorService } from './shared/jwt.interceptor.service';
 
 registerLocaleData(localeDe);
 
@@ -46,10 +47,22 @@ registerLocaleData(localeDe);
     LoginComponent
   ],
   bootstrap: [AppComponent],
-  providers: [AuthenticationService,
+  providers: [
+    AuthenticationService,
     LocationStoreService,
-    VaccinationStoreService,DatePipe,
-    { provide: LOCALE_ID, useValue: 'de' }
+    VaccinationStoreService,
+    DatePipe,
+    { provide: LOCALE_ID, useValue: 'de' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    }
   ]
 })
 export class AppModule {}

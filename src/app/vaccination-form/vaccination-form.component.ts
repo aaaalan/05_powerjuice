@@ -96,7 +96,7 @@ export class VaccinationFormComponent implements OnInit {
     vaccination.startTime = this.vaccinationForm.value.startTime;
     vaccination.endTime = this.vaccinationForm.value.endTime;
     
-    vaccination.users = this.vaccination.users;
+    //vaccination.users = this.vaccination.users;
 
     //deep copy - did not work without??
 
@@ -120,7 +120,7 @@ export class VaccinationFormComponent implements OnInit {
     } else {
       vaccination.id = 1; // jsut for testing
       console.log('Erstellen');
-
+      vaccination.location_id = +vaccination.location_id;
       console.log(vaccination);
         this.vs.create(vaccination).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
