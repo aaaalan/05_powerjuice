@@ -25,7 +25,7 @@ export class VaccinationStoreService {
   }
   create(vaccination: Vaccination): Observable<any> {
     return this.http
-      .post(`${this.api}/vaccination`, vaccination)
+      .post(`${this.api}/vaccinations`, vaccination)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }

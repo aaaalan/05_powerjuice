@@ -5,11 +5,11 @@
   (ngSubmit)="submitForm()"
 >
   <input type="hidden" name="id" />
-  <div class="field" [class.disabled]="isUpdatingVaccination">
+  <!-- <div class="field" [class.disabled]="isUpdatingVaccination">
     <label>Id</label>
     <input formControlName="id" />
     <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}</div>
-  </div>
+  </div> -->
   <div class="field">
     <label>MaxUsers</label>
     <input type="number" formControlName="maxUsers" />
@@ -22,19 +22,19 @@
       >
     </select>
   </div>
-  <!-- <div class="field">
+  <div class="field">
     <label>Datum</label>
-    <input type="date" formControlName="date">
+    <input type="date" formControlName="date" />
   </div>
-  
+
   <div class="field">
-    <label>startTime</label>
-    <input type="time" formControlName="startTime">
+    <label>Startzeit</label>
+    <input  type="time" formControlName="startTime" />
   </div>
   <div class="field">
-    <label>endTime</label>
-    <input type="time" formControlName="endTime">
-  </div> -->
+    <label>Endzeit</label>
+    <input  type="time" formControlName="endTime" />
+  </div>
 
   <!--Buttons-->
   <button

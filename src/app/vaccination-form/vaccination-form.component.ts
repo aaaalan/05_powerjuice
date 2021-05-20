@@ -56,13 +56,12 @@ export class VaccinationFormComponent implements OnInit {
         this.vaccination.maxUsers,
         [Validators.required, Validators.min(1)]
       ],
+           date: this.vaccination.date,
+      startTime: this.vaccination.startTime,
+      endTime: this.vaccination.endTime,
       location_id: [this.vaccination.location_id],
-
       location: [this.vaccination.location.city]
-
-      /*date: [this.vaccination.date, Validators.required]
-       startTime: [this.vaccination.startTime, Validators.required],
-      endTime: [this.vaccination.endTime, Validators.required]*/
+ 
     });
     this.vaccinationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()
@@ -87,60 +86,47 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   submitForm() {
-    // filter empty values
-
-    /*
-    let updatedVacevent: Vaccination = VaccinationFactory.fromObject(
-      this.vaccinationForm.value
-    );
-    
-    
-    console.log(this.vaccinationForm.value.startTime);
-    const date = moment(this.vaccinationForm.value.date).toDate();
-    const startTimeNew = moment(
-      this.vaccinationForm.value.date +
-        ' ' +
-        this.vaccinationForm.value.startTime
-    ).toDate();
-    const endTimeNew = moment(
-      this.vaccinationForm.value.date + ' ' + this.vaccinationForm.value.endTime
-    ).toDate();
-    updatedVacevent.startTime = startTimeNew;
-    updatedVacevent.endTime = endTimeNew;
-    updatedVacevent.date = date; */
-
-    console.log('VacForm');
+    // console.log('VacForm');
     console.log(this.vaccinationForm.value);
-    const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
+    const vaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
+
+    vaccination.date = this.vaccinationForm.value.date;
+    vaccination.startTime = this.vaccinationForm.value.startTime;
+    vaccination.endTime = this.vaccinationForm.value.endTime;
+    
+    vaccination.users = this.vaccination.users;
 
     //deep copy - did not work without??
 
-    console.log(updatedVaccination);
-    //just copy the authors
-    //updatedVaccination.date = "2015-09-23";
-    //updatedVaccination.startTime = new Date();
-    //updatedVaccination.endTime = new Date();
+    console.log(vaccination);
 
-    updatedVaccination.users = this.vaccination.users;
+    // so gehts.. keine Ahnung warum. Nicht anfassen, alan!
+    vaccination.maxUsers = this.vaccinationForm.value.maxUsers;
 
     this.ls
       .getSingle(this.vaccinationForm.controls['location_id'].value)
       .subscribe(res => {
-        updatedVaccination.location = res;
+        vaccination.location = res;
       });
-
+    
     if (this.isUpdatingVaccination) {
-      this.vs.update(updatedVaccination).subscribe(res => {
-        this.router.navigate(['../../vaccinations', updatedVaccination.id], {
+      this.vs.update(vaccination).subscribe(res => {
+        this.router.navigate(['../../vaccinations', vaccination.id], {
           relativeTo: this.route
         });
-        console.log(updatedVaccination.maxUsers + ' but why');
       });
     } else {
       //vaccination.user_id = 1; // jsut for testing
-      console.log(updatedVaccination);
+      console.log('Erstellen');
+
+      console.log(vaccination);
+      this.vs.create(vaccination).subscribe(res => {
+        this.vaccination = VaccinationFactory.empty();
+        this.vaccinationForm.reset(VaccinationFactory.empty());
+        this.router.navigate(['../vaccinations'], { relativeTo: this.route });
+      });
     }
   }
 }
