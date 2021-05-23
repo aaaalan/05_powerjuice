@@ -26,6 +26,14 @@ export class VaccinationDetailsComponent implements OnInit {
     this.showListEvent.emit();
   }
 
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  hasMaxVaccinations(){
+    
+  }
+
   removeVaccination() {
     if (confirm('Vaccination' + this.vaccination.id + ' wirklich löschen?')) {
       this.vs

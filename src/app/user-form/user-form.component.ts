@@ -59,7 +59,7 @@ export class UserFormComponent implements OnInit {
       email: this.user.email,
       phone: this.user.phone,
       sex: this.user.sex,
-      password: 'secret',
+      password: "$2y$10$5Wep7W2vPo4EWYc.1wbJte3ChN5jLmEkL52bTOt51/EdKM2F8UH5.",
       isAdmin: this.user.isAdmin,
       isVaccinated: this.user.isVaccinated,
       ssn: this.user.ssn,
@@ -102,7 +102,7 @@ export class UserFormComponent implements OnInit {
       this.us.create(user).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
         //this.vaccinationForm.reset(VaccinationFactory.empty());
-        this.router.navigate(['../users'], { relativeTo: this.route });
+        this.router.navigate(['../../vaccinations', this.route.snapshot.params['vaccination_id']], { relativeTo: this.route });
       });
     }
   }

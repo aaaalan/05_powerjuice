@@ -25,51 +25,60 @@
         <a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', vaccination?.id]">
           <i class="write icon"></i> Vaccination bearbeiten
         </a>
+
+      </div>
+      <div *ngIf="isLoggedIn()">
         <h3 class="ui subheader">
           <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
         </h3>
+        <table class="ui five column table">
+          <thead>
+            <tr>
+              <th>Vorname</th>
+              <th>Nachname</th>
+              <th>SSN</th>
+              <th>Geschlecht</th>
+              <th>Telefonnummer</th>
+              <th>Geimpft</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of vaccination.users; last as l">
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.ssn}}</td>
+              <td>{{user.sex}}</td>
+              <td>{{user.phone}}</td>
+              <td>
+                <span *ngIf="user.isVaccinated == true;else notVaccinated">
+                <input type="checkbox" id="isVaccinated" name="scales" checked disabled="disabled"></span>
+                <ng-template #notVaccinated><input type="checkbox" id="isVaccinated" name="scales" ></ng-template>
+              </td>
+              <td> edit | delete </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Noch {{ vaccination.maxUsers-vaccination.users.length }} Impftermine verfügbar
+                ({{vaccination.users.length}}/{{ vaccination.maxUsers }})</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
       </div>
-
-      <table class="ui five column table">
-        <thead>
-          <tr>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>SSN</th>
-            <th>Geschlecht</th>
-            <th>Telefonnummer</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of vaccination.users; last as l">
-            <td>{{user.firstName}}</td>
-            <td>{{user.lastName}}</td>
-            <td>{{user.ssn}}</td>
-            <td>{{user.sex}}</td>
-            <td>{{user.phone}}</td>
-          </tr>
-
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Noch {{ vaccination.maxUsers-vaccination.users.length }} Impftermine verfügbar
-              ({{vaccination.users.length}}/{{ vaccination.maxUsers }})</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
       <a routerLink=".." class="pwr-button green"><i class="arrow left icon"></i>Zurück zur LocationListe</a>
 
       <a *ngIf="authService.isLoggedIn()" class="pwr-button grey" (click)="removeVaccination()">
         <i class="remove icon"></i> Impfort löschen
       </a>
-       <a [routerLink]="['../../registration',vaccination?.id]" class="ui tiny yellow labeled icon button">
+      <a [routerLink]="['../../registration',vaccination?.id]" class="ui tiny yellow labeled icon button">
         <i class="car icon"></i> Für Impfung anmelden
       </a>
     </div>
   </div>
 </div>
-
