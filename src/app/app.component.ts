@@ -21,6 +21,12 @@ export class AppComponent {
     private us: UserStoreService
   ) {}
 
+ fetchUserData(){
+    if (this.isLoggedIn()) {
+      this.userName = localStorage.getItem("firstName");
+    }
+  }
+
   showList() {
     this.listOn = true;
     this.detailsOn = false;
@@ -31,10 +37,8 @@ export class AppComponent {
     this.detailsOn = true;
   }
 
-  ngAfterViewInit() {
-    if (this.isLoggedIn()) {
-      this.userName = localStorage.getItem("firstName");
-    }
+  ngOnInit() {
+    this.fetchUserData();
   }
 
   isLoggedIn() {

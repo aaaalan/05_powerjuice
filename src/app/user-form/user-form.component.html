@@ -29,6 +29,17 @@
     <input formControlName="phone" />
   </div>
 
+
+
+  
+  <div *ngIf="isLoggedIn()" class="field">
+    <label>Person geimpft:</label>
+    <select class="ui dropdown" formControlName="isVaccinated">
+      <option  value="1">Ja</option>
+      <option selected="selected" value="0">nein</option>
+    </select>
+  </div>
+
   <div class="field">
     <label>Geschlecht</label>
     <select class="ui dropdown" formControlName="sex">

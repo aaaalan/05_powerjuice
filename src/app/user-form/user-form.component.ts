@@ -29,29 +29,31 @@ export class UserFormComponent implements OnInit {
     private us: UserStoreService,
     private route: ActivatedRoute,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe, 
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit() {
+    
     const id = this.route.snapshot.params['id'];
-
-    console.log('ID:  | ' + this.route.snapshot);
+    //console.log("HALLO" + this.vaccination.id);
+   console.log('ID:  | ' + this.route.snapshot);
     if (id) {
       this.isUpdatingUser = true;
-      this.vs.getSingle(id).subscribe(vaccination => {
-        this.vaccination = vaccination;
+      this.us.getSingle(id).subscribe(user => {
+        this.user = user;
         this.initUser();
       });
+      //this.initUpdateUser();
     }
     this.initUser();
   }
 
-  initUser() {
-    /* console.log("date" + this.vaccination.date);
-      this.datePipeStart = this.datePipe.transform(this.vaccination.startTime, 'HH:mm:ss');
-      this.datePipeEnd = this.datePipe.transform(this.vaccination.endTime, 'HH:mm:ss');
-      console.log("test"+this.vaccination.date+"___ "+this.datePipeStart);*/
+ isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 
+  initUser() {
     this.userForm = this.fb.group({
       id: this.user.id,
       firstName: this.user.firstName,
@@ -59,7 +61,7 @@ export class UserFormComponent implements OnInit {
       email: this.user.email,
       phone: this.user.phone,
       sex: this.user.sex,
-      password: "$2y$10$5Wep7W2vPo4EWYc.1wbJte3ChN5jLmEkL52bTOt51/EdKM2F8UH5.",
+      password: '$2y$10$5Wep7W2vPo4EWYc.1wbJte3ChN5jLmEkL52bTOt51/EdKM2F8UH5.',
       isAdmin: this.user.isAdmin,
       isVaccinated: this.user.isVaccinated,
       ssn: this.user.ssn,
@@ -89,10 +91,13 @@ export class UserFormComponent implements OnInit {
     const user: User = UserFactory.fromObject(this.userForm.value);
     console.log(this.isUpdatingUser);
     if (this.isUpdatingUser) {
+      console.log('IS UPDATING');
+      user.vaccination_id = this.user.vaccination_id;
       this.us.update(user).subscribe(res => {
-        this.router.navigate(['../../users', user.id], {
-          relativeTo: this.route
-        });
+        this.router.navigate(
+          ['../../../vaccinations', user.vaccination_id],
+          { relativeTo: this.route }
+        );
       });
     } else {
       console.log('Erstellen');
@@ -102,7 +107,10 @@ export class UserFormComponent implements OnInit {
       this.us.create(user).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
         //this.vaccinationForm.reset(VaccinationFactory.empty());
-        this.router.navigate(['../../vaccinations', this.route.snapshot.params['vaccination_id']], { relativeTo: this.route });
+        this.router.navigate(
+          ['../../vaccinations', this.route.snapshot.params['vaccination_id']],
+          { relativeTo: this.route }
+        );
       });
     }
   }

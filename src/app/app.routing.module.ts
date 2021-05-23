@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'admin/:id', component: VaccinationFormComponent },
   { path: 'registration', component: UserFormComponent },
   { path: 'registration/:vaccination_id', component: UserFormComponent },
-  { path: 'registration/:id', component: UserFormComponent },
+  { path: 'registration/edit-user/:id', component: UserFormComponent },
   { path: 'login', component: LoginComponent }
 ];
 

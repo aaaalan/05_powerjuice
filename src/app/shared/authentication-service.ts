@@ -42,6 +42,7 @@ export class AuthenticationService {
       this.setItem('firstName', res.firstName);
       this.setItem('isAdmin', res.isAdmin);
       //localStorage.setItem('firstName', res.firstName);
+
       console.log(res.firstName);
     });
   }
@@ -76,10 +77,6 @@ export class AuthenticationService {
     return !this.isLoggedIn();
   }
 
-  watchStorage(): Observable<any> {
-    return this.userNameStorage.asObservable();
-  }
-
   setItem(key: string, data: any) {
     localStorage.setItem(key, data);
     this.userNameStorage.next('changed');
@@ -88,12 +85,5 @@ export class AuthenticationService {
   removeItem(key) {
     localStorage.removeItem(key);
     this.userNameStorage.next('changed');
-  }
-
-  ngOnInit() {
-    this.watchStorage().subscribe((data: string) => {
-      // this will call whenever your localStorage data changes
-      // use localStorage code here and set your data here for ngFor
-    });
   }
 }
