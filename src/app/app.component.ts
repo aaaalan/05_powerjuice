@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './shared/authentication-service';
 import { Location } from './shared/location';
 import { LocationStoreService } from './shared/location-store.service';
+import { User } from './shared/user';
+import { UserStoreService } from './shared/user-store.service';
 
 @Component({
   selector: 'pwr-root',
@@ -11,10 +13,10 @@ import { LocationStoreService } from './shared/location-store.service';
 export class AppComponent {
   listOn = true;
   detailsOn = true;
-
+  userName = "";
   location: Location;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private us: UserStoreService) {}
 
   showList() {
     this.listOn = true;
@@ -24,6 +26,17 @@ export class AppComponent {
     this.location = location;
     this.listOn = false;
     this.detailsOn = true;
+  }
+
+  getUserName(){
+
+      this.us
+      .getSingle(+localStorage.getItem('userId'))
+      .subscribe(res => {
+        this.userName = res.firstName;
+      });
+
+
   }
 
   isLoggedIn() {
