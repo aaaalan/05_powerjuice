@@ -61,11 +61,15 @@
           </tr>
         </tfoot>
       </table>
-              <a routerLink=".." class="pwr-button green"><i class="arrow left icon"></i>Zurück zur LocationListe</a>
+      <a routerLink=".." class="pwr-button green"><i class="arrow left icon"></i>Zurück zur LocationListe</a>
 
-        <a  a *ngIf="authService.isLoggedIn()" class="pwr-button grey" (click)="removeVaccination()">
-          <i class="remove icon"></i> Impfort löschen
-        </a>
+      <a *ngIf="authService.isLoggedIn()" class="pwr-button grey" (click)="removeVaccination()">
+        <i class="remove icon"></i> Impfort löschen
+      </a>
+       <a [routerLink]="['../../registration',vaccination?.id]" class="ui tiny yellow labeled icon button">
+        <i class="car icon"></i> Für Impfung anmelden
+      </a>
     </div>
   </div>
 </div>
+

@@ -56,12 +56,11 @@ export class VaccinationFormComponent implements OnInit {
         this.vaccination.maxUsers,
         [Validators.required, Validators.min(1)]
       ],
-           date: this.vaccination.date,
+      date: this.vaccination.date,
       startTime: this.vaccination.startTime,
       endTime: this.vaccination.endTime,
       location_id: [this.vaccination.location_id],
       location: [this.vaccination.location.city]
- 
     });
     this.vaccinationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()
@@ -92,17 +91,14 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccinationForm.value
     );
 
-
     //deep copy - did not work without??
     vaccination.date = this.vaccinationForm.value.date;
     vaccination.startTime = this.vaccinationForm.value.startTime;
     vaccination.endTime = this.vaccinationForm.value.endTime;
-    
-    if(this.vaccination.users.length>1){
+
+    if (this.vaccination.users.length > 1) {
       vaccination.users = this.vaccination.users;
     }
-
-   
 
     console.log(vaccination);
 
@@ -114,7 +110,7 @@ export class VaccinationFormComponent implements OnInit {
       .subscribe(res => {
         vaccination.location = res;
       });
-    
+
     if (this.isUpdatingVaccination) {
       this.vs.update(vaccination).subscribe(res => {
         this.router.navigate(['../../vaccinations', vaccination.id], {
@@ -126,7 +122,7 @@ export class VaccinationFormComponent implements OnInit {
       console.log('Erstellen');
       vaccination.location_id = +vaccination.location_id;
       console.log(vaccination);
-        this.vs.create(vaccination).subscribe(res => {
+      this.vs.create(vaccination).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
         //this.vaccinationForm.reset(VaccinationFactory.empty());
         this.router.navigate(['../vaccinations'], { relativeTo: this.route });

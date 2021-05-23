@@ -7,6 +7,7 @@ import { VaccinationListComponent } from './vaccination-list/vaccination-list.co
 import { VaccinationDetailsComponent } from './vaccination-details/vaccination-details.component';
 import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
 import { LoginComponent } from './login/login.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'vaccinations/:id', component: VaccinationDetailsComponent },
   { path: 'admin', component: VaccinationFormComponent },
   { path: 'admin/:id', component: VaccinationFormComponent },
+  { path: 'registration', component: UserFormComponent },
+  { path: 'registration/:vaccination_id', component: UserFormComponent },
+  { path: 'registration/:id', component: UserFormComponent },
   { path: 'login', component: LoginComponent }
 ];
 
