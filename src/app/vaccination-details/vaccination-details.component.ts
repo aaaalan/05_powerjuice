@@ -31,7 +31,10 @@ export class VaccinationDetailsComponent implements OnInit {
   }
 
   hasMaxVaccinations(){
-    
+    if(this.vaccination.users.length >= this.vaccination.maxUsers){
+      return false;
+    } 
+    return true;
   }
 
   removeVaccination() {

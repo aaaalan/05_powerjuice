@@ -76,7 +76,7 @@
       <a *ngIf="authService.isLoggedIn()" class="pwr-button grey" (click)="removeVaccination()">
         <i class="remove icon"></i> Impfort löschen
       </a>
-      <a [routerLink]="['../../registration',vaccination?.id]" class="ui tiny yellow labeled icon button">
+      <a  *ngIf="hasMaxVaccinations()" [routerLink]="['../../registration',vaccination?.id]" class="ui tiny yellow labeled icon button">
         <i class="car icon"></i> Für Impfung anmelden
       </a>
     </div>
