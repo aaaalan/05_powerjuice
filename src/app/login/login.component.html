@@ -1,36 +1,44 @@
 <div *ngIf="!isLoggedIn()">
-<h1>Login</h1>
-<form class="ui large form" [formGroup]="loginForm"
-(ngSubmit)="login()">
-<div class="field">
-<label>E-Mail</label>
-<input type="email" id="username" formControlName="username">
-<div *ngIf="loginForm.get('username').invalid &&
+  <h1 class="ui left aligned container">Login</h1>
+  <div class="loggout-wrapper">
+    
+    <img class="ui medium rounded image" src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/My-password-pana.png">
+    <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="field">
+        <label>E-Mail</label>
+        <input type="email" id="username" formControlName="username">
+        <div *ngIf="loginForm.get('username').invalid &&
 (loginForm.get('username').dirty ||
 loginForm.get('username').touched) &&
 loginForm.get('username').hasError('required')" class="ui negative
 message">
-Benutzername ist verpflichtend </div>
-<div *ngIf="loginForm.get('username').invalid &&
+          Benutzername ist verpflichtend </div>
+        <div *ngIf="loginForm.get('username').invalid &&
 (loginForm.get('username').dirty ||
 loginForm.get('username').touched) &&
 loginForm.get('username').hasError('email')" class="ui negative
 message">
-E-Mail Format überprüfen </div>
-</div>
-<div class="field">
-<label>Passwort</label>
-<input type="password" formControlName="password">
-<div *ngIf="loginForm.get('password').invalid &&
+          E-Mail Format überprüfen </div>
+      </div>
+      <div class="field">
+        <label>Passwort</label>
+        <input type="password" formControlName="password">
+        <div *ngIf="loginForm.get('password').invalid &&
 (loginForm.get('password').dirty ||
 loginForm.get('password').touched)" class="ui negative message">
-Passwort ist verpflichtend </div>
-</div>
-<button type="submit" class="ui button"
+          Passwort ist verpflichtend </div>
+      </div>
+      <button type="submit" class="ui button"
 [disabled]="loginForm.invalid">Login</button>
-</form>
+    </form>
+  </div>
 </div>
 <div *ngIf="isLoggedIn()">
-<button type="button" class="ui button"
+  <h1>Logout</h1>
+  <div class="loggout-wrapper">
+    
+    <img class="ui medium rounded image" src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/My-password-pana.png">
+    <button type="button" class="massive ui button green"
 (click)="logout()">Logout</button>
+  </div>
 </div>

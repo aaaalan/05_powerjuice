@@ -12,10 +12,10 @@
   <div class="four wide column">
     <div class="left-column">
       <div class="logo">
-        <p class="style-h3">PowerJuice </p>
+        <p class="style-h3 green">PowerJuice </p>
       </div>
       <div class="ui vertical fluid tabular menu vertical-menu">
-        <p *ngIf="isLoggedIn() && userName != null">Willkommen, {{userName}}</p>
+        <h4  *ngIf="isLoggedIn() && userName != null">Willkommen, {{userName}}</h4>
         <a routerLink="home" routerLinkActive="active" class="item ">
           <i class="home icon"></i>Home</a>
         <a routerLink="locations" routerLinkActive="active" class="item">

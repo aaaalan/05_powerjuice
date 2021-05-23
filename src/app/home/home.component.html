@@ -1,9 +1,16 @@
-<div class="">
-  <h1>PowerJuice</h1>
-  <p>Online Impfanmeldungen einfach gemacht.</p>
-  <a routerLink="../locations" class="pwr-button">
-   Impforte ansehen
-    <i class="right arrow icon"></i>
-  </a>
-  <pwr-search (locationSelected)="locationSelected($event)" class="column"></pwr-search>
-</div>
+<div class="ui four column grid">
+  <div class="row">
+    <div class="column">
+      
+        <h1>PowerJuice</h1>
+      
+      <p>Online Impfanmeldungen einfach gemacht.</p> <a routerLink="../locations" class="pwr-button">
+        Impforte ansehen
+        <i class="right arrow icon"></i>
+      </a>
+      <pwr-search (locationSelected)="locationSelected($event)" class="column"></pwr-search>
+    </div>
+    <div class="column"> <img class="ui medium rounded image" src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/Vaccine-amico.png">
+    </div>
+    <div class="column"></div>
+  </div>

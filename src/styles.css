@@ -12,7 +12,9 @@
 * {
   font-family: "Work Sans", sans-serif;
 }
-
+.green{
+  color: var(--emerald)!important;
+}
 a,
 .header,
 .button {
@@ -109,4 +111,19 @@ a.ui{
 a.ui:hover{
   color: var(--paolo);
 
+}
+
+.flex_buttons{
+  display:flex;
+}
+
+.loggout-wrapper{
+  display:flex;
+ 
+  justify-content: left;
+  flex-direction: row;
+  width: 100%;
+ 
+ 
+  align-items: center;
 }
