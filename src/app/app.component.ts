@@ -31,7 +31,7 @@ export class AppComponent {
     this.detailsOn = true;
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (this.isLoggedIn()) {
       this.userName = localStorage.getItem("firstName");
     }
@@ -45,6 +45,13 @@ export class AppComponent {
       return 'Logout';
     } else {
       return 'Login';
+    }
+  }
+    getLoginIcon() {
+    if (this.isLoggedIn()) {
+      return 'sign-in icon';
+    } else {
+      return 'sign-out icon';
     }
   }
 

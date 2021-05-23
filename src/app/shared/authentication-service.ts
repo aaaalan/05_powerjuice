@@ -40,6 +40,7 @@ export class AuthenticationService {
 
     this.us.getSingle(+localStorage.getItem('userId')).subscribe(res => {
       this.setItem('firstName', res.firstName);
+      this.setItem('isAdmin', res.isAdmin);
       //localStorage.setItem('firstName', res.firstName);
       console.log(res.firstName);
     });

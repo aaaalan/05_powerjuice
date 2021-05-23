@@ -25,7 +25,12 @@
         <a  *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">
           <i class="lock icon"></i>Adminbereich</a>
         <a routerLink="login" routerLinkActive="active" class="item">
-          <i class="lock icon"></i>{{getLoginLabel()}}</a>
+          
+          <i *ngIf="isLoggedIn()==true;else notLoggedIn" class="sign in icon"></i>
+          <ng-template #notLoggedIn>
+            <i class="sign out icon"></i>
+          </ng-template>
+          {{getLoginLabel()}}</a>
         
 
       </div>
