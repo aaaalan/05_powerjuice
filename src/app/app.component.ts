@@ -28,7 +28,7 @@ export class AppComponent {
     this.detailsOn = true;
   }
 
-  getUserName(){
+ /* getUserName(){
 
       this.us
       .getSingle(+localStorage.getItem('userId'))
@@ -37,7 +37,7 @@ export class AppComponent {
       });
 
 
-  }
+  } */
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
