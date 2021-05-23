@@ -13,10 +13,13 @@ import { UserStoreService } from './shared/user-store.service';
 export class AppComponent {
   listOn = true;
   detailsOn = true;
-  userName = "";
+  userName;
   location: Location;
 
-  constructor(private authService: AuthenticationService, private us: UserStoreService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private us: UserStoreService
+  ) {}
 
   showList() {
     this.listOn = true;
@@ -28,16 +31,15 @@ export class AppComponent {
     this.detailsOn = true;
   }
 
- /* getUserName(){
-
-      this.us
-      .getSingle(+localStorage.getItem('userId'))
-      .subscribe(res => {
-        this.userName = res.firstName;
+  ngAfterViewInit() {
+    if (this.isLoggedIn()) {
+      this.us.getSingle(+localStorage.getItem('userId')).subscribe(res => {
+        localStorage.setItem('firstName', res.firstName);
+        console.log(res.firstName);
       });
-
-
-  } */
+    }
+    this.userName = localStorage.getItem('firstName');
+  }
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
