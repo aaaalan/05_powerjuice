@@ -13,7 +13,7 @@ import { UserStoreService } from './shared/user-store.service';
 export class AppComponent {
   listOn = true;
   detailsOn = true;
-  userName;
+  userName = '';
   location: Location;
 
   constructor(
@@ -31,14 +31,10 @@ export class AppComponent {
     this.detailsOn = true;
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     if (this.isLoggedIn()) {
-      this.us.getSingle(+localStorage.getItem('userId')).subscribe(res => {
-        localStorage.setItem('firstName', res.firstName);
-        console.log(res.firstName);
-      });
+      this.userName = localStorage.getItem("firstName");
     }
-    this.userName = localStorage.getItem('firstName');
   }
 
   isLoggedIn() {

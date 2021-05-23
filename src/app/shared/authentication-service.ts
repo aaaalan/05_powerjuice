@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { retry } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { UserStoreService } from './user-store.service';
 //npm install --save-dev jwt-decode
 interface Token {
   exp: number;
@@ -12,10 +14,12 @@ interface Token {
 }
 @Injectable()
 export class AuthenticationService {
+  private userNameStorage = new Subject<String>();
+
   private api: string =
     'https://powerjuice.s1810456011.student.kwmhgb.at/api/auth';
   //'http://localhost:8080/api/auth';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private us: UserStoreService) {}
   login(email: string, password: string) {
     return this.http.post(`${this.api}/login`, {
       email: email,
@@ -33,12 +37,20 @@ export class AuthenticationService {
     console.log(decodedToken.user.id);
     localStorage.setItem('token', token);
     localStorage.setItem('userId', decodedToken.user.id);
+
+    this.us.getSingle(+localStorage.getItem('userId')).subscribe(res => {
+      this.setItem('firstName', res.firstName);
+      //localStorage.setItem('firstName', res.firstName);
+      console.log(res.firstName);
+    });
   }
   logout() {
     this.http.post(`${this.api}/logout`, {});
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
-    localStorage.removeItem('firstName');
+    this.removeItem('firstName');
+    //localStorage.removeItem('firstName');
+    //this.userNameStorage.next('changed');
     console.log('logged out');
   }
   public isLoggedIn() {
@@ -61,5 +73,26 @@ export class AuthenticationService {
   }
   isLoggedOut() {
     return !this.isLoggedIn();
+  }
+
+  watchStorage(): Observable<any> {
+    return this.userNameStorage.asObservable();
+  }
+
+  setItem(key: string, data: any) {
+    localStorage.setItem(key, data);
+    this.userNameStorage.next('changed');
+  }
+
+  removeItem(key) {
+    localStorage.removeItem(key);
+    this.userNameStorage.next('changed');
+  }
+
+  ngOnInit() {
+    this.watchStorage().subscribe((data: string) => {
+      // this will call whenever your localStorage data changes
+      // use localStorage code here and set your data here for ngFor
+    });
   }
 }
