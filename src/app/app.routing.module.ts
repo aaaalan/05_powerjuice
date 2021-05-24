@@ -8,6 +8,7 @@ import { VaccinationDetailsComponent } from './vaccination-details/vaccination-d
 import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
 import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { CanNavigateToAdminGuard } from './shared/can-navigate-to-admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'locations/:id', component: LocationDetailsComponent },
   { path: 'vaccinations', component: VaccinationListComponent },
   { path: 'vaccinations/:id', component: VaccinationDetailsComponent },
-  { path: 'admin', component: VaccinationFormComponent },
+  { path: 'admin', component: VaccinationFormComponent, canActivate:[CanNavigateToAdminGuard] },
   { path: 'admin/:id', component: VaccinationFormComponent },
   { path: 'registration', component: UserFormComponent },
   { path: 'registration/:vaccination_id', component: UserFormComponent },
@@ -27,6 +28,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [CanNavigateToAdminGuard]
 })
 export class AppRoutingModule {}

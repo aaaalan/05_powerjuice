@@ -50,7 +50,9 @@
               <td>{{user.sex}}</td>
               <td>{{user.phone}}</td>
               <td>
+                
                 <span *ngIf="user.isVaccinated == true;else notVaccinated">
+                  
                 <input type="checkbox" class="isVaccinated" name="scales" checked disabled="disabled"></span>
                 <ng-template #notVaccinated><input disabled="disabled" type="checkbox" id="isVaccinated" name="scales" >
                 </ng-template>

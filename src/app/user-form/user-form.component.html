@@ -1,67 +1,78 @@
-<h1>User Registrierung</h1>
-<form class="ui large form" [formGroup]="userForm" (ngSubmit)="submitForm()">
-  <input type="hidden" name="id" />
-  <input type="hidden" name="vaccination_id"/>
+<div class="formular">
+  <form class="ui form" [formGroup]="userForm" (ngSubmit)="submitForm()">
+    <h1 class="ui dividng header">Impf egistrierung</h1>
+    <input type="hidden" name="id" />
+    <input type="hidden" name="vaccination_id"/>
 
-  <!-- <div class="field" [class.disabled]="">
+    <!-- <div class="field" [class.disabled]="">
     <label>Id</label>
     <input formControlName="id" />
     <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}</div>
   </div> -->
-  <div class="field">
-    <label>Vorname</label>
-    <input  formControlName="firstName" />
-    <div *ngIf="errors.firstName" class="ui negative message">{{ errors.firstName }}</div>
-  </div>
-  <div class="field">
-    <label>Nachname</label>
-    <input  formControlName="lastName" />
-    <div *ngIf="errors.lastName" class="ui negative message">{{ errors.lastName }}</div>
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          <label>Vorname</label>
+          <input  formControlName="firstName" />
+          <div *ngIf="errors.firstName" class="ui negative message">{{ errors.firstName }}</div>
+        </div>
+        <div class="field">
+          <label>Nachname</label>
+          <input  formControlName="lastName" />
+          <div *ngIf="errors.lastName" class="ui negative message">{{ errors.lastName }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>SSN</label>
+      <input formControlName="ssn" />
+      <div *ngIf="errors.ssn" class="ui negative message">{{ errors.ssn }}</div>
 
-  </div>
-  <div class="field">
-    <label>SSN</label>
-    <input formControlName="ssn" />
-    <div *ngIf="errors.ssn" class="ui negative message">{{ errors.ssn }}</div>
+    </div>
+    <div class="two fields">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" formControlName="email"  />
+      <div *ngIf="errors.email" class="ui negative message">{{ errors.email }}</div>
 
-  </div>
-  <div class="field">
-    <label>Email</label>
-    <input type="email" formControlName="email" />
-    <div *ngIf="errors.email" class="ui negative message">{{ errors.email }}</div>
-
-  </div>
-  <div class="field">
-    <label>Telefonnummer</label>
-    <input formControlName="phone" />
-    <div *ngIf="errors.phone" class="ui negative message">{{ errors.phone }}</div>
-
-  </div>
+    </div>
+    <div class="field">
+      <label>Telefonnummer</label>
+      <input formControlName="phone" />
+      <div *ngIf="errors.phone" class="ui negative message">{{ errors.phone }}</div>
+    </div>
+</div>
 
 
 
 
-  <div *ngIf="isLoggedIn()" class="field">
-    <label>Person geimpft:</label>
-    <select class="ui dropdown" formControlName="isVaccinated">
+<div class="fields">
+<div *ngIf="isLoggedIn()" class="field">
+  <label>Person geimpft:</label>
+  <select class="ui dropdown" formControlName="isVaccinated">
       <option  value="1">Ja</option>
       <option selected="selected" value="0">nein</option>
     </select>
-  </div>
+</div>
 
-  <div class="field">
-    <label>Geschlecht</label>
-    <select class="ui dropdown" formControlName="sex">
-      <option  value="m">männlich</option>
+
+
+
+<div class="field">
+  <label>Geschlecht</label>
+  <select class="ui dropdown" formControlName="sex" >
+      <option  value="" hidden>Bitte auswählen</option>
+      <option  value="m" >männlich</option>
       <option  value="w">weiblich</option>
       <option  value="d">divers</option>
     </select>
-  </div>
+</div>
+</div>
 
 
 
-  <!--Buttons-->
-  <button
+<!--Buttons-->
+<button
     *ngIf="isUpdatingUser"
     type="submit"
     class="ui button"
@@ -69,7 +80,7 @@
   >
     User ändern
   </button>
-  <button
+<button
     *ngIf="!isUpdatingUser"
     type="submit"
     class="ui button"
@@ -77,6 +88,7 @@
   >
     User speichern
   </button>
-  <!-- <button type="submit" class="ui button"
+<!-- <button type="submit" class="ui button"
 [disabled]="vaccinationForm.invalid">Speichern</button> -->
 </form>
+</div>

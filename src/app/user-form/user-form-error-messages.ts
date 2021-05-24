@@ -32,6 +32,11 @@ export const UserFormErrorMessages = [
     'userExists',
     'Ein User mit der E-Mail existiert bereits in Ihrer Datenbank.'
   ),
+      new ErrorMessage(
+    'email',
+    'email',
+    'Die E-Mail muss im korrekten Format sein. Beispiel: hi@example.com'
+  ),
   new ErrorMessage(
     'phone',
     'required',
