@@ -24,6 +24,7 @@ import { TokenInterceptorService } from './shared/token-interceptor.service';
 import { JwtInterceptorService } from './shared/jwt.interceptor.service';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserStoreService } from './shared/user-store.service';
+import { LocationFormComponent } from './location-form/location-form.component';
 
 registerLocaleData(localeDe);
 
@@ -47,7 +48,8 @@ registerLocaleData(localeDe);
     VaccinationListItemComponent,
     VaccinationFormComponent,
     LoginComponent,
-    UserFormComponent
+    UserFormComponent,
+    LocationFormComponent
   ],
   bootstrap: [AppComponent],
   providers: [
