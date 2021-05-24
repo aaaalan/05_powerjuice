@@ -15,6 +15,8 @@ export class AppComponent {
   detailsOn = true;
   userName = '';
   location: Location;
+  loggedInUser: User;
+
 
   constructor(
     private authService: AuthenticationService,
@@ -24,6 +26,9 @@ export class AppComponent {
  fetchUserData(){
     if (this.isLoggedIn()) {
       this.userName = localStorage.getItem("firstName");
+        this.us
+        .getSingle(localStorage.userId)
+        .subscribe(res => (this.loggedInUser = res));
     }
   }
 

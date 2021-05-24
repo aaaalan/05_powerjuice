@@ -22,9 +22,9 @@
           <i class="hospital icon"></i>Impforte</a>
         <a routerLink="vaccinations" routerLinkActive="active" class="item">
           <i class="syringe icon"></i>Impfungen</a>
-        <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">
+        <a *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true" routerLink="admin" routerLinkActive="active" class="item">
           <i class="syringe icon"></i>Impftermin erstellen</a>
-        <a *ngIf="isLoggedIn()" routerLink="local-admin" routerLinkActive="active" class="item">
+        <a *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true" routerLink="local-admin" routerLinkActive="active" class="item">
           <i class="hospital icon"></i>Impfort erstellen</a>
         <a routerLink="login" routerLinkActive="active" class="item">
 

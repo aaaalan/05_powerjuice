@@ -25,7 +25,7 @@
 
 
       </div>
-      <div *ngIf="isLoggedIn() && loggedInUser.isAdmin == true">
+      <div *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true">
         <h3 class="ui subheader">
           <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
         </h3>
@@ -50,9 +50,9 @@
               <td>{{user.sex}}</td>
               <td>{{user.phone}}</td>
               <td>
-                
+
                 <span *ngIf="user.isVaccinated == true;else notVaccinated">
-                  
+
                 <input type="checkbox" class="isVaccinated" name="scales" checked disabled="disabled"></span>
                 <ng-template #notVaccinated><input disabled="disabled" type="checkbox" id="isVaccinated" name="scales" >
                 </ng-template>
