@@ -23,6 +23,18 @@ export class UserStoreService {
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
+    check(ssn: string): Observable<User> {
+    return this.http
+      .get<User>(`${this.api}/user/check/${ssn}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+      checkMail(email: string): Observable<User> {
+    return this.http
+      .get<User>(`${this.api}/user/checkMail/${email}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
   create(user: User): Observable<any> {
     return this.http
       .post(`${this.api}/users`, user)

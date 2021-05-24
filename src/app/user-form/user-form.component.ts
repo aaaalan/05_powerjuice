@@ -7,6 +7,7 @@ import { Vaccination } from '../shared/location';
 import { User } from '../shared/user';
 import { UserFactory } from '../shared/user-factory';
 import { UserStoreService } from '../shared/user-store.service';
+import { UserValidators } from '../shared/user-validators';
 import { VaccinationStoreService } from '../shared/vaccination-store.service';
 import { UserFormErrorMessages } from './user-form-error-messages';
 
@@ -58,13 +59,13 @@ export class UserFormComponent implements OnInit {
       id: this.user.id,
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
-      email: [this.user.email , Validators.required],
+      email: [this.user.email , [Validators.required], this.isUpdatingUser?null:UserValidators.emailExists(this.us)],
       phone: [this.user.phone,  Validators.required],
       sex: [this.user.sex, Validators.required],
       password: '$2y$10$5Wep7W2vPo4EWYc.1wbJte3ChN5jLmEkL52bTOt51/EdKM2F8UH5.',
       isAdmin: this.user.isAdmin,
       isVaccinated: this.user.isVaccinated,
-      ssn: [this.user.ssn , Validators.required],
+      ssn: [this.user.ssn , [Validators.required],this.isUpdatingUser?null:UserValidators.userExists(this.us)], 
       vaccination_id: +this.route.snapshot.params['vaccination_id']
     });
     this.userForm.statusChanges.subscribe(() => this.updateErrorMessages());

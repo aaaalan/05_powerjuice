@@ -11,30 +11,41 @@ export const UserFormErrorMessages = [
     'required',
     'Es muss ein Vorname angegeben werden'
   ),
-    new ErrorMessage(
+  new ErrorMessage(
     'lastName',
     'required',
     'Es muss ein Nachname angegeben werden'
   ),
-    new ErrorMessage(
+  new ErrorMessage(
     'ssn',
     'required',
     'Es muss eine Sozialversicherungsnummer (SSN) angegeben werden'
   ),
-      new ErrorMessage(
-    'email',
-    'required',
-    'Es muss eine E-Mail angegeben werden'
+  new ErrorMessage(
+    'ssn',
+    'userExists',
+    'Ein User mit der SSN existiert bereits in Ihrer Datenbank.'
   ),
-      new ErrorMessage(
+  new ErrorMessage('email', 'required', 'Es muss eine E-Mail angegeben werden'),
+    new ErrorMessage(
+    'email',
+    'userExists',
+    'Ein User mit der E-Mail existiert bereits in Ihrer Datenbank.'
+  ),
+  new ErrorMessage(
     'phone',
     'required',
     'Es muss eine Telefonnummer angegeben werden'
   ),
-        new ErrorMessage(
-    'phone',
+  new ErrorMessage(
+    'sex',
     'required',
     'Es muss das Geschlecht angegeben werden'
+  ),
+  new ErrorMessage(
+    'ssn',
+    'userExists',
+    'Ein User mit der SSN existiert bereits in Ihrer Datenbank.'
   ),
 
   new ErrorMessage('date', 'required', 'Es muss ein Datum angegeben werden'),
