@@ -7,12 +7,12 @@ export class ErrorMessage {
 }
 export const VaccinationFormErrorMessages = [
   new ErrorMessage(
-    'maxParticipants',
+    'maxUsers',
     'required',
     'Es muss eine maximale Anzahl der Teilnehmer:innen angegeben werden'
   ),
   new ErrorMessage(
-    'maxParticipants',
+    'maxUsers',
     'min',
     'Die Anzahl der Teilnehmer:innen muss positiv sein'
   ),

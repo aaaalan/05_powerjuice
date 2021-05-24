@@ -13,6 +13,8 @@
   <div class="field">
     <label>MaxUsers</label>
     <input type="number" formControlName="maxUsers" />
+    <div *ngIf="errors.maxUsers" class="ui negative message">{{ errors.maxUsers }}</div>
+
   </div>
   <div class="field">
     <label>Ort</label>

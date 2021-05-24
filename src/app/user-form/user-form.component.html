@@ -11,27 +11,36 @@
   <div class="field">
     <label>Vorname</label>
     <input  formControlName="firstName" />
+    <div *ngIf="errors.firstName" class="ui negative message">{{ errors.firstName }}</div>
   </div>
   <div class="field">
     <label>Nachname</label>
     <input  formControlName="lastName" />
+    <div *ngIf="errors.lastName" class="ui negative message">{{ errors.lastName }}</div>
+
   </div>
   <div class="field">
     <label>SSN</label>
     <input formControlName="ssn" />
+    <div *ngIf="errors.ssn" class="ui negative message">{{ errors.ssn }}</div>
+
   </div>
   <div class="field">
     <label>Email</label>
     <input type="email" formControlName="email" />
+    <div *ngIf="errors.email" class="ui negative message">{{ errors.email }}</div>
+
   </div>
   <div class="field">
     <label>Telefonnummer</label>
     <input formControlName="phone" />
+    <div *ngIf="errors.phone" class="ui negative message">{{ errors.phone }}</div>
+
   </div>
 
 
 
-  
+
   <div *ngIf="isLoggedIn()" class="field">
     <label>Person geimpft:</label>
     <select class="ui dropdown" formControlName="isVaccinated">

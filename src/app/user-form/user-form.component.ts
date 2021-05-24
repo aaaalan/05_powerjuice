@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication-service';
 import { Vaccination } from '../shared/location';
@@ -56,15 +56,15 @@ export class UserFormComponent implements OnInit {
   initUser() {
     this.userForm = this.fb.group({
       id: this.user.id,
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      email: this.user.email,
-      phone: this.user.phone,
-      sex: this.user.sex,
+      firstName: [this.user.firstName, Validators.required],
+      lastName: [this.user.lastName, Validators.required],
+      email: [this.user.email , Validators.required],
+      phone: [this.user.phone,  Validators.required],
+      sex: [this.user.sex, Validators.required],
       password: '$2y$10$5Wep7W2vPo4EWYc.1wbJte3ChN5jLmEkL52bTOt51/EdKM2F8UH5.',
       isAdmin: this.user.isAdmin,
       isVaccinated: this.user.isVaccinated,
-      ssn: this.user.ssn,
+      ssn: [this.user.ssn , Validators.required],
       vaccination_id: +this.route.snapshot.params['vaccination_id']
     });
     this.userForm.statusChanges.subscribe(() => this.updateErrorMessages());
