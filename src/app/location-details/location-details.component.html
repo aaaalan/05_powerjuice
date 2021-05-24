@@ -1,35 +1,36 @@
-<div class="ui stackable  grid" *ngIf="location">
+<div class="ui   grid" *ngIf="location">
   <div class="sixteen wide column">
     <div class="item">
       <div class="content">
-        <div class="header">{{ location.name }}</div>
+        <h1 class="ui header">{{ location.name }}</h1>
         <div class="meta">
-          <span class="loc"> {{location.zipcode}}-{{ location.city }},{{ location.street }} </span>
+          <span class="loc"> {{ location.street }} </span> <br>
+          <span class="loc"> {{location.zipcode}}-{{ location.city }} </span>
+
 
         </div>
         <div class="description">
-          <p> Verfügbare Impftermine in {{location.name}}:</p>
+          <h4 class="ui subheader"> Verfügbare Impftermine in {{location.name}}:</h4>
+
+
         </div>
       </div>
+
     </div>
+    <br><br
+          <a routerLink=".." class="ui tiny green labeled icon button"><i class="arrow left icon"></i>Zurück zur
+        LocationListe</a>
+      <a *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removeLocation()">
+        <i class="remove icon"></i> Impfort löschen
+      </a>
   </div>
 
-</div>
+  <div class="four wide column">
 
 
-<div class="ui grid" *ngIf="location">
-
-  <div class="twelve wide column">
-    <h1 class="ui header">Name: {{ location.name }}</h1>
-    <h3 class="ui header">Stadt:{{ location.city }}</h3>
-    <h3 class="ui header">Straße: {{ location.street }}</h3>
-    <h3 class="ui header">Plz: {{ location.zipcode }}</h3>
-
-    <div class="ui divider"></div>
     <div class="ui grid">
 
       <div class="four wide column">
-        <h4 class="ui header">Impfung</h4>
         <!-- <span *ngFor="let vac of location.vaccinations; last as l">
           <h4 class="ui header">MaxUsers: {{ vac.maxUsers }}</h4>
           <h4 class="ui header">Datum: {{ vac.date | date:'shortDate' }}</h4>
@@ -38,10 +39,7 @@
         <span *ngIf="!l">
         </span>
         </span> -->
-        <a routerLink=".." class="pwr-button green"><i class="arrow left icon"></i>Zurück zur LocationListe</a>
-        <a a *ngIf="authService.isLoggedIn()" class="pwr-button grey" (click)="removeLocation()">
-          <i class="remove icon"></i> Impfort löschen
-        </a>
+
 
       </div>
     </div>
