@@ -1,8 +1,10 @@
 <div *ngIf="!isLoggedIn()">
   <h1 class="ui left aligned container">Login</h1>
   <div class="loggout-wrapper">
-    
+
     <img class="ui medium rounded image" src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/My-password-pana.png">
+  </div>
+  <div class="loggout-wrapper">
     <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="field">
         <label>E-Mail</label>
@@ -36,7 +38,7 @@ loginForm.get('password').touched)" class="ui negative message">
 <div *ngIf="isLoggedIn()">
   <h1>Logout</h1>
   <div class="loggout-wrapper">
-    
+
     <img class="ui medium rounded image" src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/My-password-pana.png">
     <button type="button" class="massive ui button green"
 (click)="logout()">Logout</button>
