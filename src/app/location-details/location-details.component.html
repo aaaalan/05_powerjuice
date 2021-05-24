@@ -18,35 +18,66 @@
 
     </div>
     <br><br>
-          <a routerLink=".." class="ui tiny green labeled icon button"><i class="arrow left icon"></i>Zurück zur
-        LocationListe</a>
-      <a *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removeLocation()">
-        <i class="remove icon"></i> Impfort löschen
-      </a>
+    <a routerLink=".." class="ui tiny green labeled icon button"><i class="arrow left icon"></i>Zurück zur
+      LocationListe</a>
+    <a *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removeLocation()">
+      <i class="remove icon"></i> Impfort löschen
+    </a>
 
-            <a *ngIf="authService.isLoggedIn() && loggedInUser?.isAdmin == true" class="ui tiny blue labeled icon button"
-        [routerLink]="['../../local-admin', location?.id]">
-        <i class="write icon"></i> Importort bearbeiten 
-      </a>
+    <a *ngIf="authService.isLoggedIn() && loggedInUser?.isAdmin == true" class="ui tiny blue labeled icon button"
+      [routerLink]="['../../local-admin', location?.id]">
+      <i class="write icon"></i> Importort bearbeiten
+    </a>
   </div>
 
-  <div class="four wide column">
+
+  <div *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true">
+    <h3 class="ui subheader">
+      <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
+    </h3>
+    <table class="ui five column table">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Von</th>
+          <th>Bis</th>
+          <th>Verfügbare Impfungen</th>
+          <th></th>
 
 
-    <div class="ui grid">
 
-      <div class="four wide column">
-        <!-- <span *ngFor="let vac of location.vaccinations; last as l">
-          <h4 class="ui header">MaxUsers: {{ vac.maxUsers }}</h4>
-          <h4 class="ui header">Datum: {{ vac.date | date:'shortDate' }}</h4>
-          <h4 class="ui header">Uhrzeit: {{ vac.startTime }}</h4>
-          <div class="ui divider"></div>
-        <span *ngIf="!l">
-        </span>
-        </span> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vac of location.vaccinations; last as l">
+
+          <td>{{vac.date}}</td>
+          <td>{{vac.startTime}}</td>
+          <td>{{vac.endTime}}</td>
+          <td> {{vac.maxUsers}}</td>
+          <td>   <a *ngIf="authService.isLoggedIn()" [routerLink]="['../../vaccinations', vac?.id]"
+                  ><i class="circular chevron right icon"></i> Hier anmelden </a></td>
 
 
-      </div>
-    </div>
+
+
+
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Am Standort {{location.name}} gibt es aktuell {{location.vaccinations.length}} Impftermine.</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+
+
+        </tr>
+      </tfoot>
+    </table>
   </div>
+  <br><br>
+
 </div>

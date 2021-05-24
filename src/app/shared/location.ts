@@ -9,6 +9,6 @@ export class Location {
     public street: string,
     public zipcode: number,
     public city: string,
-   // public vaccinations?: Vaccination[]
+    public vaccinations?: Vaccination[]
   ) {}
 }
