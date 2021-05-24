@@ -1,10 +1,14 @@
 <div class="ui four column grid">
   <div class="row">
     <div class="column">
-      
-        <h1>PowerJuice</h1>
-      
-      <p>Online Impfanmeldungen einfach gemacht.</p> <a routerLink="../locations" class="pwr-button">
+
+      <h1>PowerJuice</h1>
+      <p>Online Impfanmeldungen einfach gemacht.</p> 
+            <div class="ui medium header" *ngIf="loggedInUser?.isVaccinated == true"> Vielen Dank! Sie wurden bereits geimpft </div>
+      <div class= "ui medium header" *ngIf="loggedInUser?.isVaccinated == false && loggedInUser?.vaccination_id != null"> Vielen Dank, Sie sind für eine Impfung angmeldet.  </div>
+           <div class= "ui medium header" *ngIf="loggedInUser?.isVaccinated == false && loggedInUser?.vaccination_id == null"> Sie wurden noch nicht geimpft. Wählen Sie einen Impfstandort und melden Sie sich zur Impfung an.  </div>
+
+      <a routerLink="../locations" class="pwr-button">
         Impforte ansehen
         <i class="right arrow icon"></i>
       </a>
