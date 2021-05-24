@@ -1,0 +1,54 @@
+<div class="formular">
+  <h1>Imptermin hinzufügen</h1>
+  <form class="ui large form" [formGroup]="locationForm" (ngSubmit)="submitForm()">
+    <input type="hidden" name="id" />
+    <!-- <div class="field" [class.disabled]="isUpdatingVaccination">
+    <label>Id</label>
+    <input formControlName="id" />
+    <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }}</div>
+  </div> -->
+    <div class="two fields">
+      <div class="field">
+        <label>Name</label>
+        <input  formControlName="name" />
+        <div *ngIf="errors.name" class="ui negative message">{{ errors.name }}</div>
+      </div>
+      <div class="field">
+        <label>Straße</label>
+        <input type="text" formControlName="street" />
+      </div>
+    </div>
+
+        <div class="two fields">
+      <div class="field">
+        <label>Postleitzahl</label>
+        <input type="number" formControlName="zipcode" />
+        <div *ngIf="errors.zipcode" class="ui negative message">{{ errors.zipcode }}</div>
+      </div>
+      <div class="field">
+        <label>Stadt</label>
+        <input type="text" formControlName="city" />
+      </div>
+    </div>
+   
+    <!--Buttons-->
+    <button
+    *ngIf="isUpdatingLocation"
+    type="submit"
+    class="ui button"
+    [disabled]="locationForm.invalid"
+  >
+    Impfort ändern
+  </button>
+    <button
+    *ngIf="!isUpdatingLocation"
+    type="submit"
+    class="ui button"
+    [disabled]="locationForm.invalid"
+  >
+    Impfort speichern
+  </button>
+    <!-- <button type="submit" class="ui button"
+[disabled]="vaccinationForm.invalid">Speichern</button> -->
+  </form>
+</div>

@@ -4,6 +4,8 @@ import { LocationFactory } from "../shared/location-factory";
 import { Location } from "../shared/location";
 import { LocationStoreService } from "../shared/location-store.service";
 import { AuthenticationService } from "../shared/authentication-service";
+import { UserStoreService } from "../shared/user-store.service";
+import { User } from "../shared/user";
 
 @Component({
   selector: "pwr-location-details",
@@ -12,7 +14,8 @@ import { AuthenticationService } from "../shared/authentication-service";
 })
 export class LocationDetailsComponent implements OnInit {
   location: Location = LocationFactory.empty();
-   
+     loggedInUser: User;
+
   
 
   //@Input() location: Location;
@@ -22,12 +25,20 @@ export class LocationDetailsComponent implements OnInit {
     private ls: LocationStoreService,
     private route: ActivatedRoute,
     private router: Router,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+        private us: UserStoreService
+
   ) {}
 
   showLocationList() {
     this.showListEvent.emit();
   }
+
+  isLoggedIn() {
+   
+    return this.authService.isLoggedIn();
+  }
+
 
   removeLocation() {
     if (confirm("Location"+this.location.id+" wirklich löschen?")) {
@@ -45,7 +56,11 @@ export class LocationDetailsComponent implements OnInit {
    this.ls
       .getSingle(+params["id"])
       .subscribe(l => (this.location = l));
-
+    if (this.authService.isLoggedIn()) {
+      this.us
+        .getSingle(localStorage.userId)
+        .subscribe(res => (this.loggedInUser = res));
+    }
 
   }
 }

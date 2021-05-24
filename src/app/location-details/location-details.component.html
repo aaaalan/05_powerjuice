@@ -23,6 +23,11 @@
       <a *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removeLocation()">
         <i class="remove icon"></i> Impfort löschen
       </a>
+
+            <a *ngIf="authService.isLoggedIn() && loggedInUser?.isAdmin == true" class="ui tiny blue labeled icon button"
+        [routerLink]="['../../local-admin', location?.id]">
+        <i class="write icon"></i> Importort bearbeiten 
+      </a>
   </div>
 
   <div class="four wide column">

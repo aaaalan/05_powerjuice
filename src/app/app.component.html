@@ -15,23 +15,26 @@
         <p class="style-h3 custom-green">PowerJuice </p>
       </div>
       <div class="ui vertical fluid tabular menu vertical-menu">
-        <h4  *ngIf="isLoggedIn() && userName != null">Willkommen, {{userName}}</h4>
+        <h4 *ngIf="isLoggedIn() && userName != null">Willkommen, {{userName}}</h4>
         <a routerLink="home" routerLinkActive="active" class="item ">
           <i class="home icon"></i>Home</a>
         <a routerLink="locations" routerLinkActive="active" class="item">
           <i class="hospital icon"></i>Impforte</a>
         <a routerLink="vaccinations" routerLinkActive="active" class="item">
           <i class="syringe icon"></i>Impfungen</a>
-        <a  *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">
-          <i class="lock icon"></i>Adminbereich</a>
+        <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">
+          <i class="syringe icon"></i>Impftermin erstellen</a>
+        <a *ngIf="isLoggedIn()" routerLink="local-admin" routerLinkActive="active" class="item">
+          <i class="hospital icon"></i>Impfort erstellen</a>
         <a routerLink="login" routerLinkActive="active" class="item">
-          
+
           <i *ngIf="isLoggedIn()==true;else notLoggedIn" class="sign in icon"></i>
           <ng-template #notLoggedIn>
             <i class="sign out icon"></i>
           </ng-template>
-          {{getLoginLabel()}}</a>
-        
+          {{getLoginLabel()}}
+        </a>
+
 
       </div>
     </div>

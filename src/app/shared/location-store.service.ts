@@ -25,7 +25,7 @@ export class LocationStoreService {
   }
   create(location: Location): Observable<any> {
     return this.http
-      .post(`${this.api}/location`, location)
+      .post(`${this.api}/locations`, location)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
