@@ -1,11 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocationFactory } from '../shared/location-factory';
 import { LocationStoreService } from '../shared/location-store.service';
 import { VaccinationStoreService } from '../shared/vaccination-store.service';
 import {  Location } from '../shared/location';
+import { LocationFormErrorMessages } from './location-form-error-messages';
 @Component({
   selector: 'app-location-form',
   templateUrl: './location-form.component.html',
@@ -48,14 +49,14 @@ export class LocationFormComponent implements OnInit {
 
     this.locationForm = this.fb.group({
       id: this.location.id,
-      name: this.location.name,
-      street: this.location.street,
-      zipcode: this.location.zipcode,
-      city: this.location.city
+      name: [this.location.name,Validators.required],
+      street: [this.location.street,Validators.required],
+      zipcode: [this.location.zipcode,Validators.required],
+      city: [this.location.city,Validators.required]
     });
-    /* this.locationForm.statusChanges.subscribe(() =>
+    this.locationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()
-    ); */
+    );
   }
 
   submitForm() {
@@ -92,11 +93,11 @@ export class LocationFormComponent implements OnInit {
   }
 
 
-  /* updateErrorMessages() {
-    console.log('Is invalid? ' + this.vaccinationForm.invalid);
+  updateErrorMessages() {
+    console.log('Is invalid? ' + this.locationForm.invalid);
     this.errors = {};
-    for (const message of VaccinationFormErrorMessages) {
-      const control = this.vaccinationForm.get(message.forControl);
+    for (const message of LocationFormErrorMessages) {
+      const control = this.locationForm.get(message.forControl);
       if (
         control &&
         control.dirty &&
@@ -107,5 +108,5 @@ export class LocationFormComponent implements OnInit {
         this.errors[message.forControl] = message.text;
       }
     }
-  } */
+  } 
 }

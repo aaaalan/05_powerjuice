@@ -48,6 +48,10 @@ h3,
 .pwr-red {
   background-color: rgb(129, 14, 14);
 }
+.pwr-red-text {
+  color: rgb(129, 14, 14);
+}
+
 .vertical-menu a i {
   float: left !important;
   padding-right: 25px;

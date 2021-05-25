@@ -2,28 +2,48 @@
   <div class="sixteen wide column">
     <div class="item">
       <div class="content">
-        <h1 class="ui subheader">Impfung in {{vaccination.location.name}}, {{vaccination.location.zipcode}}
-          {{vaccination.location.city}}</h1>
-        <h3 class="ui subheader">Impfung am {{ vaccination.date | date:'dd.MM.yyyy' }}</h3>
+        <h1 class="ui subheader">
+          Impfung in {{vaccination.location.name}},
+          {{vaccination.location.zipcode}} {{vaccination.location.city}}
+        </h1>
+        <h3
+          *ngIf="isLoggedIn() && loggedInUser?.vaccination_id != null"
+          class="ui pwr-red-text subheader"
+        >
+          <i class="syringe icon"></i> Sie sind bereits zur Impfung angemeldet
+        </h3>
+        <h3
+          *ngIf="isLoggedIn() && loggedInUser?.isVaccinated == true"
+          class="ui pwr-red-text subheader"
+        >
+          <i class="syringe icon"></i> Sie wurden bereits geimpft. 
+        </h3>
+
+        <h3 class="ui subheader">
+          Impfung am {{ vaccination.date | date:'dd.MM.yyyy' }}
+        </h3>
         <div class="meta">
-          <i class="angle right icon"></i><span class="time">Von {{ vaccination?.startTime}} bis  {{ vaccination?.endTime }}</span>
+          <i class="angle right icon"></i
+          ><span class="time"
+            >Von {{ vaccination?.startTime}} bis {{ vaccination?.endTime
+            }}</span
+          >
         </div>
-        <br>
+        <br />
         <div class="meta">
           <h4 class="ui subheader">Standort:</h4>
           <span class="street">
-            <i class="angle right icon"></i>Ort:  {{vaccination.location.name}}
-          </span><br>
+            <i class="angle right icon"></i>Ort: {{vaccination.location.name}} </span
+          ><br />
           <span class="street">
-            <i class="angle right icon"></i>Straße:{{vaccination.location.street}}
-          </span><br>
+            <i class="angle right icon"></i
+            >Straße:{{vaccination.location.street}} </span
+          ><br />
           <span class="street">
-            <i class="angle right icon"></i>Stadt:  {{vaccination.location.zipcode}}
-          {{vaccination.location.city}}
-          </span><br>
+            <i class="angle right icon"></i>Stadt:
+            {{vaccination.location.zipcode}} {{vaccination.location.city}} </span
+          ><br />
         </div>
-
-
       </div>
       <div *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true">
         <h3 class="ui subheader">
@@ -50,25 +70,50 @@
               <td>{{user.sex}}</td>
               <td>{{user.phone}}</td>
               <td>
-
                 <span *ngIf="user.isVaccinated == true;else notVaccinated">
+                  <input
+                    type="checkbox"
+                    class="isVaccinated"
+                    name="scales"
+                    checked
+                    disabled="disabled"
+                /></span>
 
-                <input type="checkbox" class="isVaccinated" name="scales" checked disabled="disabled"></span>
-                <ng-template #notVaccinated><input disabled="disabled" type="checkbox" id="isVaccinated" name="scales" >
+                <ng-template #notVaccinated
+                  ><input
+                    disabled="disabled"
+                    type="checkbox"
+                    id="isVaccinated"
+                    name="scales"
+                  />
                 </ng-template>
               </td>
-              <td> <a *ngIf="authService.isLoggedIn()" [routerLink]="['../../registration/edit-user', user?.id]"
-                  class="" (click)="isLoggedIn()"><i class="edit icon"></i></a></td>
-              <td> <a *ngIf="authService.isLoggedIn()" class=""
-                  (click)="removeUser(user.id)"><i class="trash alternate icon"></i></a></td>
-
+              <td>
+                <a
+                  *ngIf="authService.isLoggedIn()"
+                  [routerLink]="['../../registration/edit-user', user?.id]"
+                  class=""
+                  (click)="isLoggedIn()"
+                  ><i class="edit icon"></i
+                ></a>
+              </td>
+              <td>
+                <a
+                  *ngIf="authService.isLoggedIn()"
+                  class=""
+                  (click)="removeUser(user.id)"
+                  ><i class="trash alternate icon"></i
+                ></a>
+              </td>
             </tr>
-
           </tbody>
           <tfoot>
             <tr>
-              <th>Noch {{ vaccination.maxUsers-vaccination.users.length }} Impftermine verfügbar
-                ({{vaccination.users.length}}/{{ vaccination.maxUsers }})</th>
+              <th>
+                Noch {{ vaccination.maxUsers-vaccination.users.length }}
+                Impftermine verfügbar ({{vaccination.users.length}}/{{
+                vaccination.maxUsers }})
+              </th>
               <th></th>
               <th></th>
               <th></th>
@@ -80,27 +125,33 @@
           </tfoot>
         </table>
       </div>
-      <br><br>
+      <br /><br />
 
-
-
-
-      <a routerLink=".." class="ui tiny green labeled icon button"><i class="arrow left icon"></i>Zurück zur
-        LocationListe</a>
-      <a *ngIf="hasMaxVaccinations()" [routerLink]="['../../registration',vaccination?.id]"
-        class="ui tiny yellow labeled icon button">
+      <a routerLink=".." class="ui tiny green labeled icon button"
+        ><i class="arrow left icon"></i>Zurück zur LocationListe</a
+      >
+      <a
+        *ngIf="hasMaxVaccinations()"
+        [routerLink]="['../../registration',vaccination?.id]"
+        class="ui tiny yellow labeled icon button"
+      >
         <i class="car icon"></i> Für Impfung anmelden
       </a>
 
-      <a *ngIf="authService.isLoggedIn() && loggedInUser.isAdmin == true" class="ui tiny red labeled icon button"
-        (click)="removeVaccination()">
+      <a
+        *ngIf="authService.isLoggedIn() && loggedInUser.isAdmin == true"
+        class="ui tiny red labeled icon button"
+        (click)="removeVaccination()"
+      >
         <i class="remove icon"></i> Impfort löschen
       </a>
-      <a *ngIf="authService.isLoggedIn() && loggedInUser.isAdmin == true" class="ui tiny blue labeled icon button"
-        [routerLink]="['../../admin', vaccination?.id]">
+      <a
+        *ngIf="authService.isLoggedIn() && loggedInUser.isAdmin == true"
+        class="ui tiny blue labeled icon button"
+        [routerLink]="['../../admin', vaccination?.id]"
+      >
         <i class="write icon"></i> Vaccination bearbeiten
       </a>
-
     </div>
   </div>
 </div>

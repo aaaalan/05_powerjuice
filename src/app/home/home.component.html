@@ -1,20 +1,43 @@
 <div class="ui four column grid">
   <div class="row">
     <div class="column">
-
       <h1>PowerJuice</h1>
-      <p>Online Impfanmeldungen einfach gemacht.</p> 
-            <div class="ui medium header" *ngIf="loggedInUser?.isVaccinated == true"> Vielen Dank! Sie wurden bereits geimpft </div>
-      <div class= "ui medium header" *ngIf="loggedInUser?.isVaccinated == false && loggedInUser?.vaccination_id != null"> Vielen Dank, Sie sind für eine Impfung angmeldet.  </div>
-           <div class= "ui medium header" *ngIf="loggedInUser?.isVaccinated == false && loggedInUser?.vaccination_id == null"> Sie wurden noch nicht geimpft. Wählen Sie einen Impfstandort und melden Sie sich zur Impfung an.  </div>
-
-      <a routerLink="../locations" class="pwr-button">
-        Impforte ansehen
+      <p>Online Impfanmeldungen einfach gemacht.</p>
+      
+      <div class="ui medium header" *ngIf="loggedInUser?.isVaccinated == true">
+        Vielen Dank! Sie wurden bereits geimpft
+      </div>
+      <div class="ui medium header"
+        *ngIf="loggedInUser?.isVaccinated == false && loggedInUser?.vaccination_id != null">
+        Vielen Dank, Sie sind für eine Impfung angmeldet. 
+         <a [routerLink]="['../vaccinations/', loggedInUser?.vaccination_id]" class="pwr-button">
+        Hier gehts zur Impfung
         <i class="right arrow icon"></i>
       </a>
-      <pwr-search (locationSelected)="locationSelected($event)" class="column"></pwr-search>
+      </div>
+      <div
+        class="ui medium header"
+        *ngIf="loggedInUser?.isVaccinated == false && loggedInUser?.vaccination_id == null">
+        Sie wurden noch nicht geimpft. Wählen Sie einen Impfstandort und melden
+        Sie sich zur Impfung an.
+      </div>
+ <div class="ui medium header">
+      <a routerLink="../locations" class="pwr-button">
+         Weitere Impforte ansehen
+        <i class="right arrow icon"></i>
+      </a>
     </div>
-    <div class="column"> <img class="ui medium rounded image" src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/Vaccine-amico.png">
+      <pwr-search
+        (locationSelected)="locationSelected($event)"
+        class="column"
+      ></pwr-search>
+    </div>
+    <div class="column">
+      <img
+        class="ui medium rounded image"
+        src="https://api.s1810456011.student.kwmhgb.at/wp-content/uploads/2021/05/Vaccine-amico.png"
+      />
     </div>
     <div class="column"></div>
   </div>
+</div>
