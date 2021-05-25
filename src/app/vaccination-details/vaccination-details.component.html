@@ -12,6 +12,8 @@
         >
           <i class="syringe icon"></i> Sie sind bereits zur Impfung angemeldet
         </h3>
+        <h3>  Noch {{ vaccination.maxUsers-vaccination.users.length }}
+                Impftermine verfügbar </h3>
         <h3
           *ngIf="isLoggedIn() && loggedInUser?.isVaccinated == true"
           class="ui pwr-red-text subheader"
