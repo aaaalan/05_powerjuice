@@ -1,5 +1,7 @@
 <div class="formular">
-  <h1>Imptermin hinzufügen</h1>
+  <h1 *ngIf="isUpdatingLocation">Impfort bearbeiten</h1>
+  <h1 *ngIf="!isUpdatingLocation">Impfort hinzufügen</h1>
+
   <form
     class="ui large form"
     [formGroup]="locationForm"

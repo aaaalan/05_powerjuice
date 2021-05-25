@@ -1,6 +1,12 @@
 <div class="formular">
-  <h1>Imptermin hinzufügen</h1>
-  <form class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
+  <h1 *ngIf="!isUpdatingVaccination">Impftermin hinzufügen</h1>
+  <h1 *ngIf="isUpdatingVaccination">Impftermin bearbeiten</h1>
+
+  <form
+    class="ui large form"
+    [formGroup]="vaccinationForm"
+    (ngSubmit)="submitForm()"
+  >
     <input type="hidden" name="id" />
     <!-- <div class="field" [class.disabled]="isUpdatingVaccination">
     <label>Id</label>
@@ -11,15 +17,17 @@
       <div class="field">
         <label>Maximale Impfungen</label>
         <input type="number" min="1" formControlName="maxUsers" />
-        <div *ngIf="errors.maxUsers" class="ui negative message">{{ errors.maxUsers }}</div>
-
+        <div *ngIf="errors.maxUsers" class="ui negative message">
+          {{ errors.maxUsers }}
+        </div>
       </div>
       <div class="field">
         <label>Ort</label>
         <select class="ui dropdown" formControlName="location_id">
-      <option *ngFor="let location of locations" [value]="location.id">
-        {{location.name}} in  {{location.city}}</option>
-    </select>
+          <option *ngFor="let location of locations" [value]="location.id">
+            {{location.name}} in {{location.city}}</option
+          >
+        </select>
       </div>
     </div>
     <div class="field">
@@ -29,30 +37,30 @@
     <div class="two fields">
       <div class="field">
         <label>Startzeit</label>
-        <input  type="time"  formControlName="startTime" />
+        <input type="time" formControlName="startTime" />
       </div>
       <div class="field">
         <label>Endzeit</label>
-        <input  type="time" formControlName="endTime" />
+        <input type="time" formControlName="endTime" />
       </div>
     </div>
     <!--Buttons-->
     <button
-    *ngIf="isUpdatingVaccination"
-    type="submit"
-    class="ui button"
-    [disabled]="vaccinationForm.invalid"
-  >
-    Termin ändern
-  </button>
+      *ngIf="isUpdatingVaccination"
+      type="submit"
+      class="ui button"
+      [disabled]="vaccinationForm.invalid"
+    >
+      Termin ändern
+    </button>
     <button
-    *ngIf="!isUpdatingVaccination"
-    type="submit"
-    class="ui button"
-    [disabled]="vaccinationForm.invalid"
-  >
-    Termin speichern
-  </button>
+      *ngIf="!isUpdatingVaccination"
+      type="submit"
+      class="ui button"
+      [disabled]="vaccinationForm.invalid"
+    >
+      Termin speichern
+    </button>
     <!-- <button type="submit" class="ui button"
 [disabled]="vaccinationForm.invalid">Speichern</button> -->
   </form>

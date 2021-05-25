@@ -55,7 +55,7 @@
           <td>{{vac.startTime}}</td>
           <td>{{vac.endTime}}</td>
           <td> {{vac.maxUsers}}</td>
-          <td>   <a *ngIf="authService.isLoggedIn()" [routerLink]="['../../vaccinations', vac?.id]"
+          <td>   <a  [routerLink]="['../../vaccinations', vac?.id]"
                   ><i class="circular chevron right icon"></i> Hier anmelden </a></td>
 
 
