@@ -53,7 +53,7 @@ export class VaccinationDetailsComponent implements OnInit {
     }
   }
   removeUser(id) {
-    console.log(this.vaccination.id);
+   // console.log(this.vaccination.id);
     if (confirm('User' + id + ' wirklich löschen?')) {
       this.us.remove(id).subscribe(res => this.fetchData());
     }
@@ -65,7 +65,7 @@ export class VaccinationDetailsComponent implements OnInit {
 
   fetchData() {
     const params = this.route.snapshot.params;
-    console.log(+params['id']);
+   // console.log(+params['id']);
     this.vs.getSingle(+params['id']).subscribe(l => (this.vaccination = l));
     if (this.authService.isLoggedIn()) {
       this.us

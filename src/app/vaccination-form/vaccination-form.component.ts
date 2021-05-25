@@ -34,7 +34,7 @@ export class VaccinationFormComponent implements OnInit {
     this.ls.getAll().subscribe(res => (this.locations = res));
 
     const id = this.route.snapshot.params['id'];
-    console.log(this.route.snapshot.params);
+   // console.log(this.route.snapshot.params);
     if (id) {
       this.isUpdatingVaccination = true;
       this.vs.getSingle(id).subscribe(vaccination => {
@@ -68,7 +68,7 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   updateErrorMessages() {
-    console.log('Is invalid? ' + this.vaccinationForm.invalid);
+   // console.log('Is invalid? ' + this.vaccinationForm.invalid);
     this.errors = {};
     for (const message of VaccinationFormErrorMessages) {
       const control = this.vaccinationForm.get(message.forControl);
@@ -86,7 +86,7 @@ export class VaccinationFormComponent implements OnInit {
 
   submitForm() {
     // console.log('VacForm');
-    console.log(this.vaccinationForm.value);
+   // console.log(this.vaccinationForm.value);
     const vaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
@@ -100,7 +100,7 @@ export class VaccinationFormComponent implements OnInit {
       vaccination.users = this.vaccination.users;
     }
 
-    console.log(vaccination);
+  //  console.log(vaccination);
 
     // so gehts.. keine Ahnung warum. Nicht anfassen, alan!
     vaccination.maxUsers = this.vaccinationForm.value.maxUsers;
@@ -119,9 +119,9 @@ export class VaccinationFormComponent implements OnInit {
       });
     } else {
       vaccination.id = 1; // jsut for testing
-      console.log('Erstellen');
+  //    console.log('Erstellen');
       vaccination.location_id = +vaccination.location_id;
-      console.log(vaccination);
+  //    console.log(vaccination);
       this.vs.create(vaccination).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
         //this.vaccinationForm.reset(VaccinationFactory.empty());

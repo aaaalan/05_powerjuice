@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
     
     const id = this.route.snapshot.params['id'];
     //console.log("HALLO" + this.vaccination.id);
-   console.log('ID:  | ' + this.route.snapshot);
+  // console.log('ID:  | ' + this.route.snapshot);
     if (id) {
       this.isUpdatingUser = true;
       this.us.getSingle(id).subscribe(user => {
@@ -71,7 +71,7 @@ export class UserFormComponent implements OnInit {
     this.userForm.statusChanges.subscribe(() => this.updateErrorMessages());
   }
   updateErrorMessages() {
-    console.log('Is invalid? ' + this.userForm.invalid);
+   // console.log('Is invalid? ' + this.userForm.invalid);
     this.errors = {};
     for (const message of UserFormErrorMessages) {
       const control = this.userForm.get(message.forControl);
@@ -88,11 +88,11 @@ export class UserFormComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.userForm.value);
+  //  console.log(this.userForm.value);
     const user: User = UserFactory.fromObject(this.userForm.value);
-    console.log(this.isUpdatingUser);
+  //  console.log(this.isUpdatingUser);
     if (this.isUpdatingUser) {
-      console.log('IS UPDATING');
+    //  console.log('IS UPDATING');
       user.vaccination_id = this.user.vaccination_id;
       this.us.update(user).subscribe(res => {
         this.router.navigate(
@@ -101,10 +101,11 @@ export class UserFormComponent implements OnInit {
         );
       });
     } else {
-      console.log('Erstellen');
+    
+    //  console.log('Erstellen');
       user.id = 1; // jsut for testing
       //  vaccination.location_id = +vaccination.location_id;
-      console.log(user);
+    //  console.log(user);
       this.us.create(user).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
         //this.vaccinationForm.reset(VaccinationFactory.empty());

@@ -30,7 +30,7 @@ export class LocationFormComponent implements OnInit {
     //this.ls.getAll().subscribe(res => (this.locations = res));
 
     const id = this.route.snapshot.params['id'];
-    console.log(this.route.snapshot.params);
+    //console.log(this.route.snapshot.params);
     if (id) {
       this.isUpdatingLocation = true;
       this.ls.getSingle(id).subscribe(location => {
@@ -66,7 +66,7 @@ export class LocationFormComponent implements OnInit {
 
     //deep copy - did not work without??
 
-    console.log(location);
+    //console.log(location);
 
     // so gehts.. keine Ahnung warum. Nicht anfassen, alan!
 
@@ -80,9 +80,9 @@ export class LocationFormComponent implements OnInit {
       
     } else {
       location.id = 1; // jsut for testing
-      console.log('Erstellen');
+     // console.log('Erstellen');
 
-      console.log(location);
+     // console.log(location);
 
       this.ls.create(location).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
@@ -94,7 +94,7 @@ export class LocationFormComponent implements OnInit {
   }
 
   updateErrorMessages() {
-    console.log('Is invalid? ' + this.locationForm.invalid);
+    //console.log('Is invalid? ' + this.locationForm.invalid);
     this.errors = {};
     for (const message of LocationFormErrorMessages) {
       const control = this.locationForm.get(message.forControl);
