@@ -31,9 +31,9 @@
   </div>
 
 
-  <div *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true">
+  <div>
     <h3 class="ui subheader">
-      <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
+      <i class="angle right icon"></i>Imptermine in {{location.name}}, {{location.city}}:
     </h3>
     <table class="ui five column table">
       <thead>

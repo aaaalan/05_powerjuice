@@ -30,9 +30,12 @@ isLoggedIn() {
     return this.authService.isLoggedIn();
   }
 
+ngOnInit(){
+  
+}
 
 
-  ngOnInit() {
+  ngAfterViewInit() {
         if (this.authService.isLoggedIn()) {
       this.us
         .getSingle(localStorage.userId)

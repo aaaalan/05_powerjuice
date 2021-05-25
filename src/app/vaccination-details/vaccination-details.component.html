@@ -132,7 +132,7 @@
         ><i class="arrow left icon"></i>Zurück zur LocationListe</a
       >
       <a
-        *ngIf="hasMaxVaccinations()"
+        *ngIf="hasMaxVaccinations() && (!authService.isLoggedIn() || authService.isLoggedIn() && loggedInUser?.isAdmin)"
         [routerLink]="['../../registration',vaccination?.id]"
         class="ui tiny yellow labeled icon button"
       >
