@@ -45,14 +45,15 @@
           ><br />
         </div>
       </div>
+      <br>
       <div *ngIf="isLoggedIn() && loggedInUser?.isAdmin == true">
         <h3 class="ui subheader">
-          <i class="angle right icon"></i>Eingetragene Personen für die Impfung:
+          <i class="angle down icon"></i>Eingetragene Personen für die Impfung:
         </h3>
         <table class="ui five column table">
           <thead>
             <tr>
-              <th></th>
+              <th>Vorname</th>
               <th>Nachname</th>
               <th>SSN</th>
               <th>Geschlecht</th>

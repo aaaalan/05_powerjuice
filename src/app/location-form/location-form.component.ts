@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocationFactory } from '../shared/location-factory';
 import { LocationStoreService } from '../shared/location-store.service';
 import { VaccinationStoreService } from '../shared/vaccination-store.service';
-import {  Location } from '../shared/location';
+import { Location } from '../shared/location';
 import { LocationFormErrorMessages } from './location-form-error-messages';
 @Component({
   selector: 'app-location-form',
@@ -49,14 +49,12 @@ export class LocationFormComponent implements OnInit {
 
     this.locationForm = this.fb.group({
       id: this.location.id,
-      name: [this.location.name,Validators.required],
-      street: [this.location.street,Validators.required],
-      zipcode: [this.location.zipcode,Validators.required],
-      city: [this.location.city,Validators.required]
+      name: [this.location.name, Validators.required],
+      street: [this.location.street, Validators.required],
+      zipcode: [this.location.zipcode, Validators.required],
+      city: [this.location.city, Validators.required]
     });
-    this.locationForm.statusChanges.subscribe(() =>
-      this.updateErrorMessages()
-    );
+    this.locationForm.statusChanges.subscribe(() => this.updateErrorMessages());
   }
 
   submitForm() {
@@ -71,27 +69,29 @@ export class LocationFormComponent implements OnInit {
     console.log(location);
 
     // so gehts.. keine Ahnung warum. Nicht anfassen, alan!
-    
 
     if (this.isUpdatingLocation) {
-      this.ls.update(location).subscribe(res => {
-        this.router.navigate(['../../locations', location.id], {
-          relativeTo: this.route
+
+        this.ls.update(location).subscribe(res => {
+          this.router.navigate(['../../locations', location.id], {
+            relativeTo: this.route
+          });
         });
-      });
+      
     } else {
       location.id = 1; // jsut for testing
       console.log('Erstellen');
-     
+
       console.log(location);
+
       this.ls.create(location).subscribe(res => {
         //this.vaccination = VaccinationFactory.empty();
         //this.vaccinationForm.reset(VaccinationFactory.empty());
         this.router.navigate(['../'], { relativeTo: this.route });
       });
+            
     }
   }
-
 
   updateErrorMessages() {
     console.log('Is invalid? ' + this.locationForm.invalid);
@@ -108,5 +108,5 @@ export class LocationFormComponent implements OnInit {
         this.errors[message.forControl] = message.text;
       }
     }
-  } 
+  }
 }
